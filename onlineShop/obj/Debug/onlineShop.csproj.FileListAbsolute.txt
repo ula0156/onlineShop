@@ -5,3 +5,9 @@ C:\Users\Yulia\Desktop\GitHub\C#\OnlineShop\onlineShop\bin\Debug\onlineShop.pdb
 C:\Users\Yulia\Desktop\GitHub\C#\OnlineShop\onlineShop\obj\Debug\onlineShop.csprojResolveAssemblyReference.cache
 C:\Users\Yulia\Desktop\GitHub\C#\OnlineShop\onlineShop\obj\Debug\onlineShop.exe
 C:\Users\Yulia\Desktop\GitHub\C#\OnlineShop\onlineShop\obj\Debug\onlineShop.pdb
+C:\Users\iulii\Documents\Visual Studio 2017\Projects\onlineShop\onlineShop\obj\Debug\onlineShop.csprojResolveAssemblyReference.cache
+C:\Users\iulii\Documents\Visual Studio 2017\Projects\onlineShop\onlineShop\obj\Debug\onlineShop.exe
+C:\Users\iulii\Documents\Visual Studio 2017\Projects\onlineShop\onlineShop\obj\Debug\onlineShop.pdb
+C:\Users\iulii\Documents\Visual Studio 2017\Projects\onlineShop\onlineShop\bin\Debug\onlineShop.exe.config
+C:\Users\iulii\Documents\Visual Studio 2017\Projects\onlineShop\onlineShop\bin\Debug\onlineShop.exe
+C:\Users\iulii\Documents\Visual Studio 2017\Projects\onlineShop\onlineShop\bin\Debug\onlineShop.pdb

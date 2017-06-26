@@ -43,13 +43,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="entities\ContactInformation.cs" />
+    <Compile Include="productpickers\SearchProductPicker.cs" />
+    <Compile Include="productpickers\products\Backpack.cs" />
+    <Compile Include="productpickers\products\Book.cs" />
     <Compile Include="Cart.cs" />
-    <Compile Include="Product.cs" />
+    <Compile Include="pages\CartPage.cs" />
+    <Compile Include="Inventory.cs" />
+    <Compile Include="pages\IPage.cs" />
+    <Compile Include="pages\MainPage.cs" />
+    <Compile Include="productpickers\MainPageProductPicker.cs" />
+    <Compile Include="entities\Manufacturer.cs" />
+    <Compile Include="productpickers\products\PhysicalProduct.cs" />
+    <Compile Include="productpickers\products\Product.cs" />
+    <Compile Include="productpickers\IProductPicker.cs" />
+    <Compile Include="pages\ProductPage.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="pages\SearchPage.cs" />
+    <Compile Include="entities\Size.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="productpickers\products\App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
