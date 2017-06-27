@@ -23,7 +23,7 @@ namespace onlineShop
             IPage currentPage = new MainPage(inventory, cart);
 
             // We always repeat the same steps in order to navigate between pages.
-            while(true)
+            while (true)
             {
                 // Get the content of the current page.
                 string pageContent = currentPage.GetContent();

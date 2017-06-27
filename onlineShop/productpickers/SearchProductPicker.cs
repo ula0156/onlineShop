@@ -23,15 +23,17 @@ namespace onlineShop.productpickers
             // it when the PickItems method is actually called and it needs the search text.
             _searchText = searchText;
         }
-
-        // Everything is wrong here!!!!!!!!!!!!!!!!!!!!
+        
         public List<Product> PickItems(Inventory inventory)
         {
-            // TODO - return a list of items from the inventory that matches _searchText
+            // return a list of items from the inventory that matches _searchText
             List<Product> _pickedItems = new List<Product>();
             foreach (var item in inventory.Products)
             {
-
+                if (item.Key.Name.Contains(_searchText))
+                {
+                    _pickedItems.Add(item.Key);
+                }
             }
 
             return _pickedItems;

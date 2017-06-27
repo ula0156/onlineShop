@@ -8,7 +8,7 @@ namespace onlineShop
 {
     // This class implements the IProductPicker interface. This means
     // that it must provide an implementation with actual code for the PickItems method.
-    class MainPageProductPicker : IProductPicker
+    class MainPageProductPicker : IProductPicker  // what does it mean??? Does it establish relationship?
     {
         public List<Product> PickItems(Inventory inventory)
         {

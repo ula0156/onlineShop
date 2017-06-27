@@ -13,7 +13,7 @@ namespace onlineShop
     // b is a Book, but it is also a PhysicalProduct and at the same time it is also a Product.
     abstract class Product
     {
-        public Product(string name, double price)
+        public Product(string name, double price, string tags)
         {
             // Generate a unique id.
             Id = new Guid();
@@ -21,12 +21,14 @@ namespace onlineShop
             // Save the name and price passed as parameters inside the object.
             Name = name;
             Price = price;
+            Tags = tags;
         }
 
         #region Properties
-        public Guid Id { get; set; }
-        public string Name { get; set; }
+        public Guid Id { get; }
+        public string Name { get; }
         public double Price { get; set; }
+        public string Tags { get; }
         #endregion
     }
 }

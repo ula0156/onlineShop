@@ -15,9 +15,10 @@
                         string material,
                         string name,
                         double price,
+                        string tags,
                         Size size,
                         Manufacturer manufacturer)
-            : base(name, price, size, manufacturer)
+            : base(name, price, tags, size, manufacturer)
         {
             
             Volume = volumeInLiters;

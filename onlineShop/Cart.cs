@@ -11,7 +11,7 @@ namespace onlineShop
         public Cart()
         {
             Products = new List<Product>();
-        }               
+        }
         
         #region Properties
         public List<Product> Products { get; }

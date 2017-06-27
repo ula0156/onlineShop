@@ -3,7 +3,7 @@
     // See Backpack for more information.
     class Book : PhysicalProduct
     {
-        public Book(int numberOfPages, string author, string name, double price, Size size, Manufacturer manufacturer) : base(name, price, size, manufacturer)
+        public Book(int numberOfPages, string author, string name, double price, string tags, Size size, Manufacturer manufacturer) : base(name, price, tags, size, manufacturer)
         {
             NumberOfPages = numberOfPages;
             Author = author;

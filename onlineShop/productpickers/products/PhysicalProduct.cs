@@ -13,7 +13,7 @@ namespace onlineShop
         // This constructor will be called by the constructors of the subclasses(Backpack, Book).
         // Also having these parameters means that you cannot create any kind of physical product 
         // without a name, price, size and manufacturer.
-        public PhysicalProduct(string name, double price, Size size, Manufacturer manufacturer) : base(name, price)
+        public PhysicalProduct(string name, double price, string tags, Size size, Manufacturer manufacturer) : base(name, price, tags)
         {
             Size = size;
             Manufacturer = manufacturer;
