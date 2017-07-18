@@ -1,88 +1,84 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using onlineShop.App;
+using OnlineShop.Data;
+using OnlineShop.Products;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace onlineShop
+namespace OnlineShop.Pages
 {
-    class ProductPage : IPage
+    public class ProductPage : IPage
     {
         private Product _product;
-        private Inventory _inventory;
-        private Cart _cart;
+        private NavigationData _navData;
 
-        public ProductPage(Product product, Inventory inventory, Cart cart)
+        public ProductPage(Product product)
         {
             _product = product;
-            _inventory = inventory;
-            _cart = cart;
         }
 
-        public string GetContent()
+        public string OnNavigatedTo(NavigationData data)
         {
-            string content = _product.Name + "\nPrice: $" + _product.Price;
-            if (_product is Book)
+            _navData = data;
+            StringBuilder menu = new StringBuilder();
+            menu.AppendLine($"{_product.Name} - {_product.Price}");
+            if (_product is PhysicalProduct)
             {
-                var book = _product as Book;
-                content += "\nPages: " + book.NumberOfPages;
-            } else if (_product is Backpack)
-            {
-                var backpack = _product as Backpack;
-                content += $"\nVolume: {backpack.Volume} liters";
-            }
+                PhysicalProduct physicalProduct = _product as PhysicalProduct;
+                menu.AppendLine($"dimentions: {physicalProduct.Size.Depth}x{physicalProduct.Size.Height}x{physicalProduct.Size.Width}");
+                menu.AppendLine($"weight: { physicalProduct.Size.Weight}");
+                menu.AppendLine($"color: {physicalProduct.Color}");
 
-            content += "\n";
-
-            // TODO - add more details about the product and the 2 options:
-            // A. Add(remove) to cart - you need to check if the product is in the cart 
-            // in order to determine which one you display
-            // B. Back
-            bool existsInCart = false;
-            foreach (var productInCart in _cart.Products)
-            {
-                if (productInCart.Id == _product.Id)
+                if (physicalProduct is Book)
                 {
-                    existsInCart = true;
-                    break;
+                    Book book = physicalProduct as Book;
+                    menu.AppendLine($"number of pages: {book.NumberOfPages}");
+                    menu.AppendLine($"Author: {book.Author}");
+                } else if (physicalProduct is BackPack)
+                {
+                    BackPack backPack = physicalProduct as BackPack;
+                    menu.AppendLine($"volume: {backPack.Volume}\n material: {backPack.Material}");
                 }
             }
-
-            if (existsInCart)
+            menu.AppendLine("");
+            if (_navData.Cart.Products.ContainsKey(_product))
             {
-                content += "\nA. Remove from cart";
-            } else
+                menu.AppendLine("1. Remove from the cart.");
+            } else if (_navData.Stocks.Stocks[_product.Id] != 0)
             {
-                content += "\nA. Add to cart";
+                menu.AppendLine("1. Add to the cart");
             }
-            content += "\nB. Back";
 
-            return content;
+            menu.AppendLine("2. Go to the cart page.\n3. Go to the main page.\n----------");
+
+            return menu.ToString();
         }
 
         public IPage OnUserInput(string input)
         {
-            // TODO - just like in MainPage, you need to check what the user entered and 
-            // see which option it selected.
-
-            if (input == "A")
+            int userSelection = 0;
+            if (int.TryParse(input, out userSelection))
             {
-                if (_cart.Products.Contains(_product))
+                if (userSelection == 1)
                 {
-                    _cart.Products.Remove(_product);
-                } else
-                {
-                    _cart.Products.Add(_product);
+                    if (_navData.Cart.Products.ContainsKey(_product))
+                    {
+                        _navData.Cart.RemoveProduct(_product);
+                    } else
+                    {
+                        _navData.Cart.TryAddProduct(_product);
+                    } 
                 }
-
-                return new ProductPage(_product, _inventory, _cart);
+                else if (userSelection == 2)
+                {
+                    return new CartPage();
+                }
+                else if (userSelection == 3)
+                {
+                    return new MainPage();
+                }
             }
-            else if (input == "B")
-            {
-                return new MainPage(_inventory, _cart);
-            }
-
-            return new ProductPage(_product, _inventory, _cart);
+            return new ProductPage(_product);
         }
+
+
     }
 }
