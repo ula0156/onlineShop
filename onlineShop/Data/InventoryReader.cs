@@ -4,6 +4,10 @@ using System.Collections.Generic;
 
 namespace OnlineShop.Data
 {
+    /// <summary>
+    /// Class used to populate static data in the inventory. This is only used to test other features
+    /// until we start using the database.
+    /// </summary>
     public class InventoryReader
     {
         public ProductsDescriptions Descriptions;
