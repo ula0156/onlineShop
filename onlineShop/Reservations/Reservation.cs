@@ -7,7 +7,7 @@ namespace OnlineShop.Reservations
     {
         public readonly Guid Id;
         public readonly Guid ProductId;
-        public readonly DateTime ExpirationTime;
+        public DateTime ExpirationTime;
 
         public Reservation(Product product)
         {
