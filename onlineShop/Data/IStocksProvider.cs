@@ -11,6 +11,8 @@ namespace onlineShop.Data
 
         bool TryDecreaseStock(Guid productId, int count);
 
+        bool TryAddStock(Guid productId, int count);
+
         bool TryRemoveStock(Guid productId);
     }
 }

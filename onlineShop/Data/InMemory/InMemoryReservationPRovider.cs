@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
-using onlineShop.Reservations;
 using onlineShop.Data.InMemory;
+using onlineShop.Data.Entities;
 
 namespace onlineShop.Data.InMemory
 {

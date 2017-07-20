@@ -1,6 +1,6 @@
 ﻿using onlineShop.Data;
+using onlineShop.Data.Entities;
 using onlineShop.Products;
-using onlineShop.Reservations;
 using System;
 using System.Linq;
 

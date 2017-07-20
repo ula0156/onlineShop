@@ -6,14 +6,6 @@ namespace onlineShop.Products.Entities
     {
         private double _depth;
 
-        public Size(double depth, double width, double height, double weight)
-        {
-            Depth = depth;
-            Width = width;
-            Height = height;
-            Weight = weight;
-        }
-
         public double Depth {
             get {
                 return _depth;
@@ -31,7 +23,24 @@ namespace onlineShop.Products.Entities
         }
 
         public double Width { get; set; }
+
         public double Height { get; set; }
+
         public double Weight { get; set; }
+
+        /// <summary>
+        /// Entity framework needs an empty constructor for all data that is stored in the database.
+        /// </summary>
+        private Size()
+        {
+        }
+
+        public Size(double depth, double width, double height, double weight)
+        {
+            Depth = depth;
+            Width = width;
+            Height = height;
+            Weight = weight;
+        }
     }
 }

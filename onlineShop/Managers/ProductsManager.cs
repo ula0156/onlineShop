@@ -28,7 +28,7 @@ namespace onlineShop.Managers
         /// </summary>
         public bool TryAddProduct(Product product, int count)
         {
-            return _productsProvider.TryAddProduct(product) && _stocksProvider.TryIncreaseStock(product.Id, count);
+            return _productsProvider.TryAddProduct(product) && _stocksProvider.TryAddStock(product.Id, count);
         }
 
         public bool TryRemoveProduct(Guid productId)

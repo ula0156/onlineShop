@@ -4,14 +4,19 @@ namespace onlineShop.Products
 {
     public class Book: PhysicalProduct
     {
+        public int NumberOfPages { get; set; }
+
+        public string Author { get; set; }
+
+        private Book()
+        {
+        }
+
         public Book(string name, double price, string tags, string color, Size size, int numberOfPages, string author) : base(name, price, tags, color, size)
         {
             NumberOfPages = numberOfPages;
             Author = author;
         }
-
-        public int NumberOfPages { get; set; }
-        public string Author { get; set; }
 
         public override bool DoesKeyWordMatches(string keyword)
         {
