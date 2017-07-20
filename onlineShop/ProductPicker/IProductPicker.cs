@@ -1,11 +1,11 @@
-﻿using OnlineShop.Data;
-using OnlineShop.Products;
+﻿using onlineShop.Data;
+using onlineShop.Products;
 using System.Collections.Generic;
 
-namespace OnlineShop.ProductPickers
+namespace onlineShop.ProductPickers
 {
     public interface IProductPicker
     {
-        List<Product> PickItems(ProductsDescriptions inventory, ProductsStocks stocks, bool includeOutOfStock, int numItemsToPick);
+        List<Product> PickItems(IProductsReader productsReader, IStocksReader stocksReader, bool includeOutOfStock, int numItemsToPick);
     }
 }

@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace onlineShop.Data
 {
-    public interface IStocksManager
+    public interface IStocksReader
     {
-        bool TryIncreaseStock(Guid productId);
-
-        bool TryDecreaseStock(Guid productId);
+        int GetProductStock(Guid productId);
     }
 }

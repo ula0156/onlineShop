@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OnlineShop.Pages
+namespace onlineShop.Pages
 {
     public interface IPage 
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace OnlineShop.Products.Entities
+namespace onlineShop.Products.Entities
 {
     public class Size
     {

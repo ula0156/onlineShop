@@ -1,9 +1,9 @@
 ﻿using onlineShop.App;
-using OnlineShop.Data;
-using OnlineShop.Products;
+using onlineShop.Data;
+using onlineShop.Products;
 using System.Text;
 
-namespace OnlineShop.Pages
+namespace onlineShop.Pages
 {
     public class CartProductPage: IPage
     {

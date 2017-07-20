@@ -1,10 +1,10 @@
-﻿using OnlineShop.Reservations;
+﻿using onlineShop.Reservations;
 using System;
 using System.Linq;
 
-namespace onlineShop.Data.InMemory
+namespace onlineShop.Data
 {
-    public interface IReservationManager
+    public interface IReservationsProvider
     {
         bool TryAddReservation(Reservation reservation);
 

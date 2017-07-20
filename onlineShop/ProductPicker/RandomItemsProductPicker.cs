@@ -1,22 +1,22 @@
-﻿using OnlineShop.Data;
-using OnlineShop.Products;
+﻿using onlineShop.Data;
+using onlineShop.Products;
 using System.Collections.Generic;
 
-namespace OnlineShop.ProductPickers
+namespace onlineShop.ProductPickers
 {
     public class RandomItemsProductPicker: IProductPicker
     {
-        public List<Product> PickItems(ProductsDescriptions inventory, ProductsStocks stocks, bool includeOutOfStock, int numberOfItems)
+        public List<Product> PickItems(IProductsReader productsReader, IStocksReader stocksReader, bool includeOutOfStock, int numberOfItems)
         {
             List<Product> products = new List<Product>();
             int count = 0;
-            foreach (var item in inventory.Products)
+            foreach (var item in productsReader.GetProducts())
             {
                 if (count < numberOfItems || numberOfItems == Constants.UNLIMITED) 
                 {
-                    if (stocks.Stocks[item.Key] > 0 || stocks.Stocks[item.Key] == Constants.UNLIMITED)
+                    if (stocksReader.GetProductStock(item.Id) > 0 || stocksReader.GetProductStock(item.Id) == Constants.UNLIMITED)
                     {
-                        products.Add(item.Value);
+                        products.Add(item);
                         count++;
                     }
                 } else

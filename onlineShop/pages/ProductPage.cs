@@ -1,9 +1,9 @@
 ﻿using onlineShop.App;
-using OnlineShop.Data;
-using OnlineShop.Products;
+using onlineShop.Data;
+using onlineShop.Products;
 using System.Text;
 
-namespace OnlineShop.Pages
+namespace onlineShop.Pages
 {
     public class ProductPage : IPage
     {
@@ -42,7 +42,7 @@ namespace OnlineShop.Pages
             if (_navData.Cart.Products.ContainsKey(_product))
             {
                 menu.AppendLine("1. Remove from the cart.");
-            } else if (_navData.Stocks.Stocks[_product.Id] != 0)
+            } else if (_navData.StocksReader.GetProductStock(_product.Id) != 0)
             {
                 menu.AppendLine("1. Add to the cart");
             }

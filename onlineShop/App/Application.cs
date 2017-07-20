@@ -1,37 +1,43 @@
 ﻿using onlineShop.App;
-using OnlineShop.Data;
-using OnlineShop.Pages;
-using OnlineShop.Reservations;
+using onlineShop.Data;
+using onlineShop.Data.InMemory;
+using onlineShop.Managers;
+using onlineShop.Pages;
+using onlineShop.Reservations;
 using System;
 
-namespace OnlineShop.App
+namespace onlineShop.App
 {
     public static class Application
     {
         public static void Run()
         {
-            InventoryReader inventoryReader = new InventoryReader();
-            ProductsDescriptions productDescriptions = inventoryReader.Descriptions;
-            ProductsStocks productStocks = inventoryReader.Stocks;
+            // create in-memory databases
+            DatabaseInitializer inventoryReader = new DatabaseInitializer();
+            var productsProvider = new InMemoryProductsProvider(inventoryReader.Descriptions);
+            var stocksProvider = new InMemoryStocksProvider(inventoryReader.Stocks);
 
-            ReservedInventory reservedInventory = new ReservedInventory();
-            ReservationManager reservationManager = new ReservationManager(productStocks, reservedInventory);
-            Cart cart = new Cart(productDescriptions, reservationManager);
+            // has methods to act on databases through productsProvider and stocksProvider
+            var productsManager = new ProductsManager(productsProvider, stocksProvider);
+            var reservationsProvider = new InMemoryReservationProvider(new InMemoryReservationsRepository());
+            var reservationsManager = new ReservationsManager(stocksProvider, reservationsProvider);
+           
+            Cart cart = new Cart(productsProvider, reservationsManager);
             NavigationData navData = new NavigationData();
             navData.Cart = cart;
-            navData.ProductsDescriptions = productDescriptions;
-            navData.Stocks = productStocks;
+            navData.ProductsReader = productsProvider;
+            navData.StocksReader = stocksProvider;
 
-            IPage page = new MainPage();
-            while (page != null)
+            IPage currentPage = new MainPage();
+            while (currentPage != null)
             {
-                string menu = page.OnNavigatedTo(navData);
+                string menu = currentPage.OnNavigatedTo(navData);
                 Console.WriteLine(menu);
 
                 string userInput = Console.ReadLine();
-                var newPage = page.OnUserInput(userInput);
-                navData.PreviousPages.Push(page);
-                page = newPage;
+                var newPage = currentPage.OnUserInput(userInput);
+                navData.PreviousPages.Push(currentPage);
+                currentPage = newPage;
 
                 Console.Clear();
             }

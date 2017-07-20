@@ -1,18 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OnlineShop.Reservations;
-using OnlineShop.Data;
+using onlineShop.Reservations;
+using onlineShop.Data.InMemory;
 
 namespace onlineShop.Data.InMemory
 {
-    public class InMemoryReservationManager: IReservationManager
+    public class InMemoryReservationProvider: IReservationsProvider
     {
-        private ReservedInventory _reservedInventory;
+        private InMemoryReservationsRepository _reservedInventory;
 
-        public InMemoryReservationManager(ReservedInventory reservedInventory)
+        public InMemoryReservationProvider(InMemoryReservationsRepository reservedInventory)
         {
             _reservedInventory = reservedInventory;
         }

@@ -1,12 +1,12 @@
 ﻿using onlineShop.App;
-using OnlineShop.Data;
+using onlineShop.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OnlineShop.Pages
+namespace onlineShop.Pages
 {
     public class CheckoutPage: IPage
     {

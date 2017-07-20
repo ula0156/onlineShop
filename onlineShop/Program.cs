@@ -1,6 +1,6 @@
-﻿using OnlineShop.App;
+﻿using onlineShop.App;
 
-namespace OnlineShop
+namespace onlineShop
 {
     class Program
     {

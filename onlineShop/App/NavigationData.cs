@@ -1,6 +1,7 @@
-﻿using OnlineShop;
-using OnlineShop.Data;
-using OnlineShop.Pages;
+﻿using onlineShop;
+using onlineShop.Data;
+using onlineShop.Data.InMemory;
+using onlineShop.Pages;
 using System.Collections.Generic;
 
 namespace onlineShop.App
@@ -10,8 +11,8 @@ namespace onlineShop.App
     /// </summary>
     public class NavigationData
     {
-        public ProductsDescriptions ProductsDescriptions;
-        public ProductsStocks Stocks;
+        public IProductsReader ProductsReader;
+        public IStocksReader StocksReader;
         public Cart Cart;
         public Stack<IPage> PreviousPages;
 

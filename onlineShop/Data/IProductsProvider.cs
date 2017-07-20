@@ -1,4 +1,4 @@
-﻿using OnlineShop.Products;
+﻿using onlineShop.Products;
 using System;
 
 namespace onlineShop.Data
@@ -6,9 +6,9 @@ namespace onlineShop.Data
     /// <summary>
     /// Interface used for read and write access to the database of products.
     /// </summary>
-    interface IProductsManager : IProductsReader
+    public interface IProductsProvider : IProductsReader
     {
-        bool TryAddProduct(Product product, int stock);
+        bool TryAddProduct(Product product);
 
         bool TryRemoveProduct(Guid productId);
     }

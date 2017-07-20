@@ -1,7 +1,7 @@
-﻿using OnlineShop.Products;
+﻿using onlineShop.Products;
 using System;
 
-namespace OnlineShop.Reservations
+namespace onlineShop.Reservations
 {
     public class Reservation
     {

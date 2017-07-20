@@ -1,4 +1,4 @@
-﻿namespace OnlineShop.Products
+﻿namespace onlineShop.Products
 {
     public class Song: Product
     {

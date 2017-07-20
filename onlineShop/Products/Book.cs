@@ -1,6 +1,6 @@
-﻿using OnlineShop.Products.Entities;
+﻿using onlineShop.Products.Entities;
 
-namespace OnlineShop.Products
+namespace onlineShop.Products
 {
     public class Book: PhysicalProduct
     {

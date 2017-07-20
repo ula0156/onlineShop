@@ -1,22 +1,22 @@
-﻿using OnlineShop.Products;
-using OnlineShop.Products.Entities;
+﻿using onlineShop.Products;
+using onlineShop.Products.Entities;
 using System.Collections.Generic;
 
-namespace OnlineShop.Data
+namespace onlineShop.Data.InMemory
 {
     /// <summary>
     /// Class used to populate static data in the inventory. This is only used to test other features
     /// until we start using the database.
     /// </summary>
-    public class InventoryReader
+    public class DatabaseInitializer
     {
-        public ProductsDescriptions Descriptions;
-        public ProductsStocks Stocks;
+        public InMemoryProductsRepository Descriptions;
+        public InMemoryStocksRepository Stocks;
 
-        public InventoryReader()
+        public DatabaseInitializer()
         {
-            Descriptions = new ProductsDescriptions();
-            Stocks = new ProductsStocks();
+            Descriptions = new InMemoryProductsRepository();
+            Stocks = new InMemoryStocksRepository();
             AddData();
         }
 
