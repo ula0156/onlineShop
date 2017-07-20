@@ -1,12 +1,12 @@
 ﻿using onlineShop.App;
-using OnlineShop.ProductPickers;
-using OnlineShop.Products;
+using onlineShop.ProductPickers;
+using onlineShop.Products;
 using System.Collections.Generic;
 using System.Text;
 
-namespace OnlineShop.Pages
+namespace onlineShop.Pages
 {
-    class SearchPage : IPage
+    public class SearchPage : IPage
     {
         private NavigationData _navData;
         private List<string> _userInput;
@@ -24,11 +24,11 @@ namespace OnlineShop.Pages
             if (_userInput != null)
             {
                 KeyWordProductPicker searchPageProductPicker = new KeyWordProductPicker(_userInput);
-                _itemsToDisplay = searchPageProductPicker.PickItems(_navData.ProductsDescriptions, _navData.Stocks, true, int.MaxValue);
+                _itemsToDisplay = searchPageProductPicker.PickItems(data.ProductsReader, data.StocksReader, true, int.MaxValue);
                 int count = 1;
                 foreach (var item in _itemsToDisplay)
                 {
-                    if (_navData.Stocks.Stocks[item.Id] == 0)
+                    if (_navData.StocksReader.GetProductStock(item.Id) == 0)
                     {
                         menu.AppendLine($"{count}. {item.Name} - {item.Price:C} - out of stock!");                    }
                     else

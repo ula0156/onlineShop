@@ -1,12 +1,13 @@
-﻿using OnlineShop.Data;
-using OnlineShop.Products;
-using OnlineShop.Reservations;
+﻿using onlineShop.Data;
+using onlineShop.Managers;
+using onlineShop.Products;
+using onlineShop.Reservations;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 
-namespace OnlineShop
+namespace onlineShop
 {
     public class Cart
     {
@@ -15,13 +16,13 @@ namespace OnlineShop
         // That's why we have to give a cart access to the inventory.
         // One productID might have several reservations -> list of reservations.
         private Dictionary<Guid, List<Reservation>> _reservations; // Guid - productId
-        private ReservationManager _reservationManager;
-        private ProductsDescriptions _productsDescriptions;
+        private ReservationsManager _reservationsManager;
+        private IProductsReader _productsReader;
 
-        public Cart(ProductsDescriptions inventory, ReservationManager reservationManager)
+        public Cart(IProductsReader productsReader, ReservationsManager reservationsManager)
         {
-            _productsDescriptions = inventory;
-            _reservationManager = reservationManager;
+            _productsReader = productsReader;
+            _reservationsManager = reservationsManager;
             _reservations = new Dictionary<Guid, List<Reservation>>();
         }
 
@@ -31,10 +32,10 @@ namespace OnlineShop
             get
             {
                 var items = new Dictionary<Product, int>();
-                foreach (var item in _reservations)
+                foreach (var productReservations in _reservations)
                 {
-                    var product = _productsDescriptions.Products.First(kvp => kvp.Key == item.Key);
-                    items.Add(product.Value, _reservations.Values.Count);
+                    var product = _productsReader.GetProducts().First(p => p.Id == productReservations.Key);
+                    items.Add(product, _reservations.Values.Count);
                 }
 
                 return new ReadOnlyDictionary<Product, int>(items);
@@ -44,7 +45,7 @@ namespace OnlineShop
         public bool TryAddProduct(Product product)
         {
             Reservation reservation;
-            if (_reservationManager.TryToReserveProduct(product, out reservation))
+            if (_reservationsManager.TryToReserveProduct(product, out reservation))
             {
                 List<Reservation> listOfReservations;
                 if (_reservations.TryGetValue(product.Id, out listOfReservations))
@@ -76,7 +77,7 @@ namespace OnlineShop
                     reservationToCancel = reservation;
                 }
             }
-            _reservationManager.CancelReservation(reservationToCancel.Id);
+            _reservationsManager.CancelReservation(reservationToCancel.Id);
             reservationList.Remove(reservationToCancel);
         }
 
@@ -87,7 +88,7 @@ namespace OnlineShop
             //ReservationManager.CompletePurchase(_products);
             foreach (var item in _reservations)
             {
-                var productToReserveAgain = _productsDescriptions.Products[item.Key]; // maybe there is no use of storing this information
+                var productToReserveAgain = _productsReader.GetProducts().First(p => p.Id == item.Key); // maybe there is no use of storing this information
 
                 // TODO - iterate in reverse order so it is safe to remove while iterating
                 foreach (var reservation in item.Value)
@@ -117,7 +118,7 @@ namespace OnlineShop
             //- remove reservation from the card
             foreach (var product in _reservations)
             {
-                _reservationManager.TryCompleteReservation(product.Key);
+                _reservationsManager.TryCompleteReservation(product.Key);
                 _reservations.Remove(product.Key);
             }
         }

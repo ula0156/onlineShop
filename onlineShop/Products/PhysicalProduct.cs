@@ -1,6 +1,6 @@
-﻿using OnlineShop.Products.Entities;
+﻿using onlineShop.Products.Entities;
 
-namespace OnlineShop.Products
+namespace onlineShop.Products
 {
     public abstract class PhysicalProduct : Product
     {

@@ -1,11 +1,11 @@
 ﻿using onlineShop.App;
-using OnlineShop.Data;
-using OnlineShop.ProductPickers;
-using OnlineShop.Products;
+using onlineShop.Data;
+using onlineShop.ProductPickers;
+using onlineShop.Products;
 using System.Collections.Generic;
 using System.Text;
 
-namespace OnlineShop.Pages
+namespace onlineShop.Pages
 {
     public class MainPage: IPage
     {
@@ -15,7 +15,7 @@ namespace OnlineShop.Pages
         {
             StringBuilder menu = new StringBuilder();
             MainPageProductPicker productPicker = new MainPageProductPicker(); 
-            _itemsToDisplay = productPicker.PickItems(data.ProductsDescriptions, data.Stocks, false, 5);
+            _itemsToDisplay = productPicker.PickItems(data.ProductsReader, data.StocksReader, false, 5);
 
             int index = 1;
             foreach(var item in _itemsToDisplay)

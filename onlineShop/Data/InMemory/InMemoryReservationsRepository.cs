@@ -1,14 +1,14 @@
-﻿using OnlineShop.Reservations;
+﻿using onlineShop.Reservations;
 using System;
 using System.Collections.Generic;
 
-namespace OnlineShop.Data
+namespace onlineShop.Data.InMemory
 {
-    public class ReservedInventory
+    public class InMemoryReservationsRepository
     {
         public Dictionary<Guid, Reservation> ReservationList; // reservationId
 
-        public ReservedInventory()
+        public InMemoryReservationsRepository()
         {
             ReservationList = new Dictionary<Guid, Reservation>();
         }

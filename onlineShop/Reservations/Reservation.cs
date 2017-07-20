@@ -1,13 +1,13 @@
-﻿using OnlineShop.Products;
+﻿using onlineShop.Products;
 using System;
 
-namespace OnlineShop.Reservations
+namespace onlineShop.Reservations
 {
     public class Reservation
     {
         public readonly Guid Id;
         public readonly Guid ProductId;
-        public readonly DateTime ExpirationTime;
+        public DateTime ExpirationTime;
 
         public Reservation(Product product)
         {

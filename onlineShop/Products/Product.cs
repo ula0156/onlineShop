@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace OnlineShop.Products
+namespace onlineShop.Products
 {
     public abstract class Product
     {

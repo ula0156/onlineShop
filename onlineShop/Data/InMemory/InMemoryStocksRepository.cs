@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace OnlineShop.Data
+namespace onlineShop.Data.InMemory
 {
-    public class ProductsStocks
+    public class InMemoryStocksRepository
     {
         public Dictionary<Guid, int> Stocks;
 
-        public ProductsStocks()
+        public InMemoryStocksRepository()
         {
             Stocks = new Dictionary<Guid, int>();
         }
