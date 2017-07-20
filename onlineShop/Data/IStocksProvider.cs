@@ -2,6 +2,9 @@
 
 namespace onlineShop.Data
 {
+    /// <summary>
+    /// Interface for providing read and write access to the stocks.
+    /// </summary>
     public interface IStocksProvider: IStocksReader
     {
         bool TryIncreaseStock(Guid productId, int count);

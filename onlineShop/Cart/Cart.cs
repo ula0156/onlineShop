@@ -17,11 +17,11 @@ namespace onlineShop
         // One productID might have several reservations -> list of reservations.
         private Dictionary<Guid, List<Reservation>> _reservations; // Guid - productId
         private ReservationsManager _reservationsManager;
-        private IProductsReader _inventory;
+        private IProductsReader _productsReader;
 
-        public Cart(IProductsReader inventory, ReservationsManager reservationsManager)
+        public Cart(IProductsReader productsReader, ReservationsManager reservationsManager)
         {
-            _inventory = inventory;
+            _productsReader = productsReader;
             _reservationsManager = reservationsManager;
             _reservations = new Dictionary<Guid, List<Reservation>>();
         }
@@ -34,7 +34,7 @@ namespace onlineShop
                 var items = new Dictionary<Product, int>();
                 foreach (var productReservations in _reservations)
                 {
-                    var product = _inventory.GetProducts().First(p => p.Id == productReservations.Key);
+                    var product = _productsReader.GetProducts().First(p => p.Id == productReservations.Key);
                     items.Add(product, _reservations.Values.Count);
                 }
 
@@ -88,7 +88,7 @@ namespace onlineShop
             //ReservationManager.CompletePurchase(_products);
             foreach (var item in _reservations)
             {
-                var productToReserveAgain = _inventory.GetProducts().First(p => p.Id == item.Key); // maybe there is no use of storing this information
+                var productToReserveAgain = _productsReader.GetProducts().First(p => p.Id == item.Key); // maybe there is no use of storing this information
 
                 // TODO - iterate in reverse order so it is safe to remove while iterating
                 foreach (var reservation in item.Value)

@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace onlineShop.Data
 {
+    /// <summary>
+    /// Interface for providing read access to the stocks, mostly used by pages and product pickers.
+    /// </summary>
     public interface IStocksReader
     {
         int GetProductStock(Guid productId);

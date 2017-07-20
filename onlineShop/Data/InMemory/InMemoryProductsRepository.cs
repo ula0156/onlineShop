@@ -6,7 +6,7 @@ namespace onlineShop.Data.InMemory
 {
     public class InMemoryProductsRepository
     {
-        // Guid - product id, product, int - number of copies
+        // Key: Guid - product id, Value: product
         public Dictionary<Guid, Product> Products;
 
         public InMemoryProductsRepository()

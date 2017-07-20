@@ -6,7 +6,7 @@ using System.Text;
 
 namespace onlineShop.Pages
 {
-    class SearchPage : IPage
+    public class SearchPage : IPage
     {
         private NavigationData _navData;
         private List<string> _userInput;

@@ -5,18 +5,18 @@ namespace onlineShop.Data.InMemory
 {
     public class InMemoryStocksProvider : IStocksProvider
     {
-        private InMemoryStocksRepository _productsStocks;
+        private InMemoryStocksRepository _stocksRepository;
 
-        public InMemoryStocksProvider(InMemoryStocksRepository productsStocks)
+        public InMemoryStocksProvider(InMemoryStocksRepository stocksRepository)
         {
-            _productsStocks = productsStocks;
+            _stocksRepository = stocksRepository;
         }
 
         public bool TryDecreaseStock(Guid productId, int count)
         {
-            if (_productsStocks.Stocks.ContainsKey(productId))
+            if (_stocksRepository.Stocks.ContainsKey(productId))
             {
-                _productsStocks.Stocks[productId] -= count;
+                _stocksRepository.Stocks[productId] -= count;
                 return true;
             }
 
@@ -25,9 +25,9 @@ namespace onlineShop.Data.InMemory
 
         public bool TryIncreaseStock(Guid productId, int count)
         {
-            if (_productsStocks.Stocks.ContainsKey(productId))
+            if (_stocksRepository.Stocks.ContainsKey(productId))
             {
-                _productsStocks.Stocks[productId] += count;
+                _stocksRepository.Stocks[productId] += count;
                 return true;
             }
 
@@ -36,12 +36,12 @@ namespace onlineShop.Data.InMemory
 
         public int GetProductStock(Guid productId)
         {
-            return _productsStocks.Stocks[productId];
+            return _stocksRepository.Stocks[productId];
         }
 
         public bool TryRemoveStock(Guid productId)
         {
-            return _productsStocks.Stocks.Remove(productId);
+            return _stocksRepository.Stocks.Remove(productId);
         }
     }
 }
