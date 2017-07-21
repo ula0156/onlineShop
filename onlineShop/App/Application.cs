@@ -9,6 +9,9 @@ namespace onlineShop.App
 {
     public static class Application
     {
+        private static readonly bool _useInMemoryDatabase = false;
+        private static readonly bool _initializeDatabase = false;
+
         private static void CreateInMemoryProviders(
             out IProductsProvider productsProvider, 
             out IReservationsProvider reservationsProvider, 
@@ -41,16 +44,25 @@ namespace onlineShop.App
             IReservationsProvider reservationsProvider;
             IStocksProvider stocksProvider;
 
-            //CreateInMemoryProviders(out productsProvider, out reservationsProvider, out stocksProvider);
-            CreateDatabaseProviders(out productsProvider, out reservationsProvider, out stocksProvider);
-
+            if (_useInMemoryDatabase)
+            {
+                CreateInMemoryProviders(out productsProvider, out reservationsProvider, out stocksProvider);
+            }
+            else
+            {
+                CreateDatabaseProviders(out productsProvider, out reservationsProvider, out stocksProvider);
+            }
+            
             // Create additional objects on top of the database.
             var productsManager = new ProductsManager(productsProvider, stocksProvider);
 
             // Initialize the database so it is not empty when qwe launch the application.
-            //DatabaseInitializer databaseInitializer = new DatabaseInitializer();
-            //databaseInitializer.InitializeDatabase(productsManager);
-
+            if (_initializeDatabase)
+            {
+                DatabaseInitializer databaseInitializer = new DatabaseInitializer();
+                databaseInitializer.InitializeDatabase(productsManager);
+            }
+            
             // has methods to act on databases through productsProvider and stocksProvider
             var reservationsManager = new ReservationsManager(stocksProvider, reservationsProvider);
            

@@ -42,6 +42,16 @@ namespace onlineShop.Data.Database
                 return false;
             }
 
+            if (stock.Amount == Constants.UNLIMITED)
+            {
+                return true;
+            }
+
+            if (stock.Amount < count)
+            {
+                return false;
+            }
+
             stock.Amount -= count;
             _stocksModel.SaveChanges();
 
@@ -54,6 +64,11 @@ namespace onlineShop.Data.Database
             if (stock == null)
             {
                 return false;
+            }
+
+            if (stock.Amount == Constants.UNLIMITED)
+            {
+                return true;
             }
 
             stock.Amount += count;
