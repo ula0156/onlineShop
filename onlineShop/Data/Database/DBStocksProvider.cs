@@ -10,19 +10,18 @@ namespace onlineShop.Data.Database
         public DBStocksProvider()
         {
             _stocksModel = new StocksModel();
-        }
+         }
 
         public int GetProductStock(Guid productId)
         {
             var stock = _stocksModel.Stocks.FirstOrDefault(s => s.ProductId == productId);
-            if (stock == null)
-            {
+            if (stock == null)            {
                 return 0;
             }
 
             return stock.Amount;
-        }
-
+          }
+  
         public bool TryAddStock(Guid productId, int count)
         {
             var stock = new Stock();
@@ -31,8 +30,8 @@ namespace onlineShop.Data.Database
             _stocksModel.Stocks.Add(stock);
             _stocksModel.SaveChanges();
 
-            return true;
-        }
+           return true;
+         }
 
         public bool TryDecreaseStock(Guid productId, int count)
         {
