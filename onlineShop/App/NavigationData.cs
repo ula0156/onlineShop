@@ -1,6 +1,4 @@
-﻿using onlineShop;
-using onlineShop.Data;
-using onlineShop.Data.InMemory;
+﻿using onlineShop.Data;
 using onlineShop.Pages;
 using System.Collections.Generic;
 
