@@ -1,9 +1,26 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace onlineShop.Products
 {
     public abstract class Product
     {
+        [Required]
+        [Key]
+        public Guid Id { get; private set; }
+
+        [Required]
+        public string Name { get; set; }
+
+        [Required]
+        public double Price { get; set; }
+
+        public string Tags { get; set; }
+
+        protected Product()
+        {
+        }
+
         public Product(string name, double price, string tags)
         {
             Id = Guid.NewGuid(); // static method. Called it on the class
@@ -11,11 +28,6 @@ namespace onlineShop.Products
             Price = price;
             Tags = tags.ToLower();
         }
-
-        public Guid Id { get; set; }
-        public string Name { get; set; }
-        public double Price { get; set; }
-        public string Tags { get; set; }
 
         public virtual bool DoesKeyWordMatches(string keyword)
         {

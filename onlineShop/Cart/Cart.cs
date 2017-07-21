@@ -1,7 +1,7 @@
 ﻿using onlineShop.Data;
+using onlineShop.Data.Entities;
 using onlineShop.Managers;
 using onlineShop.Products;
-using onlineShop.Reservations;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

@@ -1,4 +1,4 @@
-﻿using onlineShop.Reservations;
+﻿using onlineShop.Data.Entities;
 using System;
 using System.Linq;
 

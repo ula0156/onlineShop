@@ -3,7 +3,12 @@
     public class Song: Product
     {
         public double Duration { get; set; }
+
         public string Artist { get; set; }
+
+        private Song()
+        {
+        }
 
         public Song(string name, double price, string tags, double duration, string artist) : base(name, price, tags)
         {

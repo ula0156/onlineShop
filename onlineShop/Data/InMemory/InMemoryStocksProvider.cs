@@ -39,6 +39,12 @@ namespace onlineShop.Data.InMemory
             return _stocksRepository.Stocks[productId];
         }
 
+        public bool TryAddStock(Guid productId, int count)
+        {
+            _stocksRepository.Stocks.Add(productId, count);
+            return true;
+        }
+
         public bool TryRemoveStock(Guid productId)
         {
             return _stocksRepository.Stocks.Remove(productId);

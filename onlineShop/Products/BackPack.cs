@@ -4,6 +4,14 @@ namespace onlineShop.Products
 {
     public class BackPack: PhysicalProduct
     {
+        public double Volume { get; set; }
+
+        public string Material { get; set; }
+
+        private BackPack()
+        {
+        }
+
         public BackPack(
             string name,
             double price, 
@@ -17,8 +25,5 @@ namespace onlineShop.Products
             Volume = volume;
             Material = material;
         }
-
-        public double Volume { get; set; }
-        public string Material { get; set; }
     }
 }
