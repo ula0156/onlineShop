@@ -17,7 +17,8 @@ namespace onlineShop.Pages
             _navData = data;
             StringBuilder menu = new StringBuilder();
 
-            menu.AppendLine($"Total Price: {_navData.Cart.TotalPrice()}\nSelect payment method:\n1. Credit Card\n2. Debit Card\n3. PayPal");
+            menu.AppendLine($"Total Price: {_navData.Cart.TotalPrice():C}\nSelect payment method:\n1. Credit Card\n2. Debit Card\n3. PayPal");
+            menu.AppendLine("");
             menu.AppendLine("A. Return to cart\nB. Go to the main page\n----------");
 
             return menu.ToString();

@@ -36,6 +36,15 @@ namespace onlineShop.Managers
             return false;
         }
 
+        public bool TryReserveAgain(Guid reservationId)
+        {
+            if (_reservationsProvider.TryRenewReservation(reservationId, TimeSpan.FromMinutes(10)))
+            {
+                return true;
+            }
+            return false;
+        }
+
         public void CancelReservation(Guid reservationId)
         {
             // - remove reservation from the reservedInventory
@@ -53,5 +62,6 @@ namespace onlineShop.Managers
             //- remove reservation from the reservedInventory
             return _reservationsProvider.TryRemoveReservation(reservationId);
         }
+        
     }
 }

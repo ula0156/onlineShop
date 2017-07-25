@@ -19,7 +19,8 @@ namespace onlineShop.Pages
         {
             _navData = data;
             StringBuilder menu = new StringBuilder();
-            menu.AppendLine($"{_product.Name} - {_product.Price}");
+            menu.AppendLine($"{_product.Name} - {_product.Price:C}");
+            menu.AppendLine("-------------------");
             if (_product is PhysicalProduct)
             {
                 PhysicalProduct physicalProduct = _product as PhysicalProduct;
@@ -35,8 +36,14 @@ namespace onlineShop.Pages
                 } else if (physicalProduct is BackPack)
                 {
                     BackPack backPack = physicalProduct as BackPack;
-                    menu.AppendLine($"volume: {backPack.Volume}\n material: {backPack.Material}");
+                    menu.AppendLine($"volume: {backPack.Volume}");
+                    menu.AppendLine($"material: {backPack.Material}");
                 }
+            }
+            else
+            {
+                Song song = _product as Song;
+                menu.AppendLine($"Artist: {song.Artist}\nDuration: {song.Duration} sec");
             }
             menu.AppendLine("");
             if (_navData.Cart.Products.ContainsKey(_product))

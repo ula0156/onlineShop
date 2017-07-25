@@ -8,6 +8,7 @@ namespace onlineShop.Pages
     public class CartPage: IPage
     {
         private NavigationData _navData;
+        //use _menuMapping in order to retrive productPage corresponding for user selection
         private Dictionary<int, Product> _menuMapping;
 
         // This method create a menu what is in the cart - menu
@@ -22,20 +23,33 @@ namespace onlineShop.Pages
             _navData = data;
             StringBuilder menu = new StringBuilder();
             _menuMapping = new Dictionary<int, Product>();
-
             int count = 1;
+            double weight = 0; // add it in order to do not display weight for products which don't have it
             foreach (var item in _navData.Cart.Products)
             {
-                if (item.Value > 0)
+                if (item.Value > 0 || item.Value == Constants.UNLIMITED)
                 {
+                    if (item.Value == Constants.UNLIMITED)
+                    {
+                        weight = 0;
+                    }
                     _menuMapping.Add(count, item.Key);
-                    menu.AppendLine($"{count}. {item.Key.Name} - {item.Key.Price:C}\nNumber of copies: {item.Value}");
+                    menu.AppendLine($"{count}. {item.Key.Name} - {item.Key.Price:C}");
+                    menu.AppendLine("");
+                    if (item.Key is PhysicalProduct)
+                    {
+                        menu.AppendLine($"   number of copies: {item.Value}");
+                    }
                     count++;
                 }
-                
+                menu.AppendLine("----------------------");
             }
-            menu.AppendLine($"Total price: {_navData.Cart.TotalPrice()}");
-            menu.AppendLine($"Total weight: {_navData.Cart.TotalWeight()}");
+            menu.AppendLine($"Total price: {_navData.Cart.TotalPrice():C}");
+            if (weight != 0)
+            {
+                menu.AppendLine($"Total weight: {_navData.Cart.TotalWeight()}");
+            }
+
             menu.AppendLine("");
             menu.AppendLine("A. Go to the main page");
             if (_navData.Cart.TotalPrice() > 0)
@@ -44,6 +58,7 @@ namespace onlineShop.Pages
             }
             return menu.ToString();
         }
+
 
         public IPage OnUserInput(string input)
         {

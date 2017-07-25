@@ -19,9 +19,25 @@ namespace onlineShop.Pages
         {
             _navData = data;
             StringBuilder menu = new StringBuilder();
-            menu.AppendLine($" {_product.Name}\n----------\n1. Add copy to the cart\n2. Remove product from the cart");
-            menu.AppendLine($"Number of copies: { _navData.Cart.Products[_product]}");
-            menu.AppendLine($"A. Go to the product page\nB. Go to the main page\nC. Return to the cart page");
+            if (_product is PhysicalProduct)
+            {
+                menu.AppendLine($" {_product.Name} - Number of copies: { _navData.Cart.Products[_product]}");
+            }
+            else
+            {
+                menu.AppendLine($" {_product.Name}");
+            }
+            menu.AppendLine("-------------------");
+            if (_product is PhysicalProduct)
+            {
+                menu.AppendLine($"1. Add copy to the cart");
+            }
+            menu.AppendLine($"2. Remove product from the cart");
+            menu.AppendLine("");
+            menu.AppendLine("A. Go to the product page");
+            menu.AppendLine("B. Go to the main page");
+            menu.AppendLine("C. Return to the cart page");
+
             return menu.ToString();
         }
 
@@ -30,10 +46,12 @@ namespace onlineShop.Pages
             if (input == "1")
             {
                 _navData.Cart.TryAddProduct(_product);
+                return new CartProductPage(_product);
             } 
             else if (input == "2")
             {
-                _navData.Cart.RemoveProduct(_product); 
+                _navData.Cart.RemoveProduct(_product);
+                return new CartProductPage(_product);
             }
             else if (input.ToUpper() == "A")
             {
