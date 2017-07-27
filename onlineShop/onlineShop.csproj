@@ -72,9 +72,11 @@
     <Compile Include="Data\IProductsReader.cs" />
     <Compile Include="Data\IStocksProvider.cs" />
     <Compile Include="Data\IStocksReader.cs" />
+    <Compile Include="Managers\ExpiredReservationsManager.cs" />
     <Compile Include="Managers\ProductsManager.cs" />
     <Compile Include="Pages\CartProductPage.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="Specials\ExpiredReservationsDetector.cs" />
     <Compile Include="Specials\HolidayManager.cs" />
     <Compile Include="Data\InMemory\InMemoryProductsRepository.cs" />
     <Compile Include="App\DatabaseInitializer.cs" />

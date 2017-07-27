@@ -88,24 +88,25 @@ namespace onlineShop
             }
         }
 
-        public void UpdateCart()
+        public bool UpdateCart()
         {
             // - check if items are still reserved : Y - set expiration time for extra 10 minutes
             //                                       N - try to reserve again : if failed  -> display an error
+            bool updateSucceded = true;
 
             // container for reservations which were already expired;
             Dictionary<Product, int> productsToReserve = new Dictionary<Product, int>(); // product, number of items of this product
 
             foreach (var item in _reservations)
             {
-                var productToReserveAgain = _productsReader.GetProducts().First(p => p.Id == item.Key); // maybe there is no use of storing this information
+                var productToReserveAgain = _productsReader.GetProducts().First(p => p.Id == item.Key);
                 // iterate in reverse order so it is safe to remove while iterating
                 for (var i = _reservations[productToReserveAgain.Id].Count; i >= 0; i--)
                 {
-                    if (_reservations[productToReserveAgain.Id][i].ExpirationTime > DateTime.Now) // how to check if reservation is still valid? 
+                    if (_reservations[productToReserveAgain.Id][i].ExpirationTime > DateTime.Now)
                     {
                         // The reservation manager exposes method "TryExtendReservation(reservationId)"
-                        _reservationsManager.TryReserveAgain(_reservations[productToReserveAgain.Id][i].Id);
+                        _reservationsManager.TryRenewReservation(_reservations[productToReserveAgain.Id][i].Id);
                     }
                     else
                     {
@@ -122,6 +123,7 @@ namespace onlineShop
                         }
                     }
                 }
+
                 foreach (var product in productsToReserve)
                 {
                     for (var j = 0; j < product.Value; j++)
@@ -130,11 +132,13 @@ namespace onlineShop
                         if(!_reservationsManager.TryToReserveProduct(product.Key, out reservation))
                         {
                             _reservations.Remove(product.Key.Id);
+                            updateSucceded = false;
                         }
                     }
                 }
             }
 
+            return updateSucceded;
         }
 
         public void CompletePurchase()
