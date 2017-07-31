@@ -46,10 +46,12 @@ namespace onlineShop.Pages
                 menu.AppendLine($"Artist: {song.Artist}\nDuration: {song.Duration} sec");
             }
             menu.AppendLine("");
+            //if (_navData.Cart.Products )
             if (_navData.Cart.Products.ContainsKey(_product))
             {
                 menu.AppendLine("1. Remove from the cart.");
-            } else if (_navData.StocksReader.GetProductStock(_product.Id) != 0)
+            }
+            else if (_navData.StocksReader.GetProductStock(_product.Id) != 0)
             {
                 menu.AppendLine("1. Add to the cart");
             }

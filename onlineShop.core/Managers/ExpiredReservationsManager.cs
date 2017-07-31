@@ -8,9 +8,9 @@ namespace onlineShop.Managers
     public class ExpiredReservationsManager
     {
         private IReservationsProvider _reservationsProvider;
-        private ExpiredReservationsDetector _expiredReservationsDetector;
+        private ExpiredReservationsDetector expiredReservationsDetector;
 
-        public ExpiredReservationsManager(IReservationsProvider reservationsProvider, ExpiredReservationsDetector expiredReservationsDetector)
+        public ExpiredReservationsManager(IReservationsProvider reservationsProvider)
         {
             expiredReservationsDetector = new ExpiredReservationsDetector(
                 reservationsProvider, 
