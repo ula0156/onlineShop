@@ -3,6 +3,7 @@ using onlineShop.Data.Database;
 using onlineShop.Data.InMemory;
 using onlineShop.Managers;
 using onlineShop.Pages;
+using onlineShop.Specials;
 using System;
 
 namespace onlineShop.App
@@ -68,9 +69,10 @@ namespace onlineShop.App
            
             Cart cart = new Cart(productsProvider, reservationsManager);
             NavigationData navData = new NavigationData();
-            navData.Cart = cart;
+            ExpiredReservationsManager expiredReservationsManager = new ExpiredReservationsManager(reservationsProvider);
             navData.ProductsReader = productsProvider;
             navData.StocksReader = stocksProvider;
+            navData.Cart = cart;
 
             IPage currentPage = new MainPage();
             while (currentPage != null)
