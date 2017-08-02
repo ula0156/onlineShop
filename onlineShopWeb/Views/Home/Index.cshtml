@@ -4,9 +4,9 @@
     ViewBag.Title = "Home Page";
 }
 
-@foreach (var book in Model.BooksList)
-{
-    @book.Name;<br>
-}
-
-
+    @foreach (var book in Model.BooksList)
+    {
+        @book.Name<br>
+        @book.Author<br>
+        @book.Price<br>
+     }
