@@ -23,8 +23,8 @@ namespace onlineShop.Pages
             StringBuilder menu = new StringBuilder();
             if (_userInput != null)
             {
-                KeyWordProductPicker searchPageProductPicker = new KeyWordProductPicker(_userInput);
-                _itemsToDisplay = searchPageProductPicker.PickItems(data.ProductsReader, data.StocksReader, true, int.MaxValue);
+                RandomItemsProductPicker searchPageProductPicker = new RandomItemsProductPicker();
+                _itemsToDisplay = searchPageProductPicker.PickItems(data.ProductsReader, data.StocksReader, Filters.GetFilterByKeyWords(_userInput,  typeof(Product)), int.MaxValue);
                 int count = 1;
                 foreach (var item in _itemsToDisplay)
                 {

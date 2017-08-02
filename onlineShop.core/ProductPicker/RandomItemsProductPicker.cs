@@ -6,26 +6,24 @@ namespace onlineShop.ProductPickers
 {
     public class RandomItemsProductPicker: IProductPicker
     {
-        public List<Product> PickItems(IProductsReader productsReader, IStocksReader stocksReader, bool includeOutOfStock, int numberOfItems)
+        public List<Product> PickItems(IProductsReader productsReader, IStocksReader stocksReader, ProductPickerFilter filter, int numberOfItems)
         {
-            List<Product> products = new List<Product>();
-            int count = 0;
+            List<Product> pickedItems = new List<Product>();
             foreach (var item in productsReader.GetProducts())
             {
-                if (count < numberOfItems || numberOfItems == Constants.UNLIMITED) 
-                {
-                    if (stocksReader.GetProductStock(item.Id) > 0 || stocksReader.GetProductStock(item.Id) == Constants.UNLIMITED)
-                    {
-                        products.Add(item);
-                        count++;
-                    }
-                } else
+                if (pickedItems.Count == numberOfItems)
                 {
                     break;
                 }
+
+                int stock = stocksReader.GetProductStock(item.Id);
+                if (filter(item, stock))
+                {
+                    pickedItems.Add(item);
+                }
             }
 
-            return products;
+            return pickedItems;
         }
     }
 }

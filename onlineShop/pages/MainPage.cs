@@ -2,6 +2,7 @@
 using onlineShop.Data;
 using onlineShop.ProductPickers;
 using onlineShop.Products;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -14,8 +15,8 @@ namespace onlineShop.Pages
         public string OnNavigatedTo(NavigationData data)
         {
             StringBuilder menu = new StringBuilder();
-            MainPageProductPicker productPicker = new MainPageProductPicker(); 
-            _itemsToDisplay = productPicker.PickItems(data.ProductsReader, data.StocksReader, false, 5);
+            RandomItemsProductPicker productPicker = new RandomItemsProductPicker(); 
+            _itemsToDisplay = productPicker.PickItems(data.ProductsReader, data.StocksReader, Filters.GetFilterByType(typeof(Product)), 5);
 
             int index = 1;
             foreach(var item in _itemsToDisplay)

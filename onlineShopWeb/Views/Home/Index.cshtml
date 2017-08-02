@@ -1,8 +1,12 @@
-﻿@{
+﻿@model onlineShopWeb.Models.HomeViewModel
+
+@{
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>Eclipse</h1>
-</div>
+@foreach (var book in Model.BooksList)
+{
+    @book.Name;<br>
+}
+
 

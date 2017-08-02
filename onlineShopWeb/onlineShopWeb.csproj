@@ -198,11 +198,22 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="DataAccess\ProvidersFactory.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201707312320258_InitialCreate.cs" />
+    <Compile Include="Migrations\201707312320258_InitialCreate.Designer.cs">
+      <DependentUpon>201707312320258_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708020454384_Attribute.cs" />
+    <Compile Include="Migrations\201708020454384_Attribute.Designer.cs">
+      <DependentUpon>201708020454384_Attribute.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\HomeViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -284,6 +295,14 @@
       <Project>{6a846ca2-df79-4ebe-a0bd-ae2eed03aadd}</Project>
       <Name>onlineShop.core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201707312320258_InitialCreate.resx">
+      <DependentUpon>201707312320258_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708020454384_Attribute.resx">
+      <DependentUpon>201708020454384_Attribute.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
