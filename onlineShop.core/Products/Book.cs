@@ -8,14 +8,18 @@ namespace onlineShop.Products
 
         public string Author { get; set; }
 
+        public string Genre { get; set; }
+
+        
         private Book()
         {
         }
-
-        public Book(string name, double price, string tags, string color, Size size, int numberOfPages, string author) : base(name, price, tags, color, size)
+        
+        public Book(string name, double price, string tags, string color, Size size, int numberOfPages, string author, string genre) : base(name, price, tags, color, size)
         {
             NumberOfPages = numberOfPages;
             Author = author;
+            Genre = genre; 
         }
 
         public override bool DoesKeyWordMatches(string keyword)

@@ -50,7 +50,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cart\Cart.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Data\DatabaseInitializer.cs" />
     <Compile Include="Data\Database\DBProductsProvider.cs" />
@@ -75,9 +74,8 @@
     <Compile Include="Managers\ExpiredReservationsManager.cs" />
     <Compile Include="Managers\ProductsManager.cs" />
     <Compile Include="Managers\ReservationsManager.cs" />
+    <Compile Include="ProductPicker\Filters.cs" />
     <Compile Include="ProductPicker\IProductPicker.cs" />
-    <Compile Include="ProductPicker\KeyWordProductPicker.cs" />
-    <Compile Include="ProductPicker\MainPageProductPicker.cs" />
     <Compile Include="ProductPicker\RandomItemsProductPicker.cs" />
     <Compile Include="Products\BackPack.cs" />
     <Compile Include="Products\Book.cs" />
