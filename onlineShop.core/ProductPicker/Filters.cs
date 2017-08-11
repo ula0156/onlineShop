@@ -23,6 +23,7 @@ namespace onlineShop.ProductPickers
                 return true;
             });
         }
+
         public static bool InStock(Product product, int stock, Type t)
         {
             return stock > 0 || stock == onlineShop.Constants.UNLIMITED && t == product.GetType();       

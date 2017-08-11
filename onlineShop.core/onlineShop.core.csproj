@@ -51,6 +51,8 @@
   <ItemGroup>
     <Compile Include="Cart\Cart.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="Data\ICartProvider.cs" />
+    <Compile Include="Data\InMemory\InMemoryCartProvider.cs" />
     <Compile Include="Data\DatabaseInitializer.cs" />
     <Compile Include="Data\Database\DBProductsProvider.cs" />
     <Compile Include="Data\Database\DBReservationsProvider.cs" />

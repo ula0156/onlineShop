@@ -10,4 +10,14 @@ namespace onlineShopWeb.Models
         public List<Song> SongsList { get; set; }
         
     }
+
+    public class HomeViewModelBook
+    {
+        public Book book { get; set; }
+    }
+
+    public class HomeViewModelSong
+    {
+        public Song song { get; set; }
+    }
 }

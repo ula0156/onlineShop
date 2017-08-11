@@ -1,12 +1,19 @@
 ﻿@model onlineShopWeb.Models.HomeViewModel
 
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@foreach (var book in Model.BooksList)
+@foreach (var item in Model.BooksList)
 {
-    @book.Name;<br>
+    @Html.ActionLink(item.Name, "Details", "Book", new { id=item.Name}, null) 
+    @item.Price<br/>
 }
 
 
+@foreach (var item in Model.SongsList)
+{
+    @Html.ActionLink(item.Name, "Details", "Song", new { id = item.Name }, null)
+    @item.Price<br/>
+}

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<onlineShop.Products.Book>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+} 
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Author)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var book in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => book.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => book.Price)
+        </td>
+        <td>    
+            @Html.DisplayFor(modelItem => book.Author)
+        </td>
+        <td>
+            @Html.ActionLink("Details", "Details", new { id= book.Id }) |
+            @Html.ActionLink("Add to cart", "AddToCart", "Cart", new { id = book.Id }, null)
+        </td>
+    </tr>
+}
+
+</table>
