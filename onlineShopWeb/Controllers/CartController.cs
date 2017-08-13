@@ -5,6 +5,7 @@ using onlineShopWeb.Models;
 using onlineShopWeb.Utility;
 using System;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 
 namespace onlineShopWeb.Controllers
@@ -15,7 +16,12 @@ namespace onlineShopWeb.Controllers
         {
             // HttpContext contains an information about current context
             // Encapsulates all HTTP-specific information about an individual HTTP request.
-            var identifier = IdentifierLoginUsers.GetIdentifier(HttpContext);
+            if (id == null)
+            {
+                throw new HttpException(404, "Product not found");
+
+            }
+            var identifier = UserIdentifier.GetIdentifier(HttpContext);
 
             var cart = ProvidersFactory.GetCartProvider().GetCart(identifier);
             var product = ReadersFactory.GetProductsReader().GetProducts().First(guid => guid.Id == id);
@@ -32,7 +38,7 @@ namespace onlineShopWeb.Controllers
         {
             // HttpContext contains an information about current context
             // Encapsulates all HTTP-specific information about an individual HTTP request.
-            var identifier = IdentifierLoginUsers.GetIdentifier(HttpContext);
+            var identifier = UserIdentifier.GetIdentifier(HttpContext);
 
             var cart = ProvidersFactory.GetCartProvider().GetCart(identifier);
             CartViewModel model = new CartViewModel();

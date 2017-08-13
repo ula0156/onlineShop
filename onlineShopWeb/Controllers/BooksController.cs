@@ -15,9 +15,6 @@ namespace onlineShopWeb.Controllers
 {
     public class BooksController : Controller
     {
-        //private ProductsModel db = new ProductsModel();
-
-        // GET: Books
         public ActionResult Index()
         {
             var BookModel = GetBooks();
@@ -39,6 +36,7 @@ namespace onlineShopWeb.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             var book = ReadersFactory.GetProductsReader().GetProducts().First(guid => guid.Id == id);
             return View(book);
         }

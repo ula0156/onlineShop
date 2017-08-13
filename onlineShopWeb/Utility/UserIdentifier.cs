@@ -6,7 +6,7 @@ using System.Web;
 
 namespace onlineShopWeb.Utility
 {
-    public static class IdentifierLoginUsers
+    public static class UserIdentifier
     {
         public static string GetIdentifier(HttpContextBase context)
         {

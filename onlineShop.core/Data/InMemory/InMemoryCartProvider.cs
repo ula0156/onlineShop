@@ -42,9 +42,10 @@ namespace onlineShop.Data.InMemory
 
         public void CleanUpCart(List<string> listOfSessionAndLoginIds)
         {
-            foreach (string sessionOrLoginId in listOfSessionAndLoginIds)
+            foreach (string userIdentifier in listOfSessionAndLoginIds)
             {
-                // didn't understand how to remove from this dictionary
+                Cart cart;
+                _carts.TryRemove(userIdentifier, out cart);
             }
         }
 

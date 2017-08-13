@@ -7,13 +7,13 @@
 
 @foreach (var item in Model.BooksList)
 {
-    @Html.ActionLink(item.Name, "Details", "Book", new { id=item.Name}, null) 
+    @Html.ActionLink(item.Name, "Details", onlineShopWeb.Views.Controllers.Books, new { id = item.Id}, null) 
     @item.Price<br/>
 }
 
 
 @foreach (var item in Model.SongsList)
 {
-    @Html.ActionLink(item.Name, "Details", "Song", new { id = item.Name }, null)
+    @Html.ActionLink(item.Name, "Details", onlineShopWeb.Views.Controllers.Songs, new { id = item.Id }, null)
     @item.Price<br/>
 }

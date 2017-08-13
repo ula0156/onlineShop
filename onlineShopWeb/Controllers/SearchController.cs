@@ -13,7 +13,6 @@ namespace onlineShopWeb.Controllers
 {
     public class SearchController : Controller
     {
-        // GET: Search
         [HttpPost]
         public ActionResult Index(string searchText)
         {

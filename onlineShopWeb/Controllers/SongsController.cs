@@ -17,10 +17,10 @@ namespace onlineShopWeb.Controllers
     {
         public ActionResult Index()
         {
-            var songModel = GetfSongs();
+            var songModel = GetSongs();
             return View(songModel);
         }
-        private List<Song> GetfSongs()
+        private List<Song> GetSongs()
         {
             RandomItemsProductPicker randomItemsPicker = new RandomItemsProductPicker();
             var listOfSongs = randomItemsPicker.PickItems(
