@@ -1,0 +1,19 @@
+﻿@model onlineShopWeb.Models.CartViewModel
+
+@{
+    ViewBag.Title = "DisplayCart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table class="table-responsive">
+    @foreach (var item in Model.CartProducts)
+    {
+        <tr>
+            <td> @item.Key.Name </td>
+            <td> @item.Value </td>            
+        </tr>
+    }
+</table>
+
+Total weight: @Model.TotalWeight<br>
+Total price: @Model.TotalPrice<br>

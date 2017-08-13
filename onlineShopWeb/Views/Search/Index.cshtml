@@ -1,0 +1,24 @@
+﻿@using onlineShop.Products
+@model onlineShopWeb.Models.SearchViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@foreach (var item in Model.ListOfProducts)
+{
+    if (item is Book) 
+    {
+        @Html.ActionLink(item.Name, "Details", "Book", new { id = item.Name }, null)
+        @item.Price<br />
+    }
+
+    if (item is Song)
+    {
+        @Html.ActionLink(item.Name, "Details", "Song", new { id = item.Name }, null)
+        @item.Price<br />
+    }
+}
+
+

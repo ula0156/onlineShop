@@ -24,7 +24,7 @@ namespace onlineShop.Products
 
         public override bool DoesKeyWordMatches(string keyword)
         {
-            return base.DoesKeyWordMatches(keyword) || Author.ToLower().Contains(keyword);
+            return base.DoesKeyWordMatches(keyword) || Author.ToLower().Contains(keyword) || Genre.ToLower().Contains(keyword);
         }
     }
 }

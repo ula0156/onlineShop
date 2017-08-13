@@ -21,10 +21,18 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Books", "Index", "Book")</li>
-                    <li>@Html.ActionLink("Songs", "Index", "Song")</li>
+                    <li>@Html.ActionLink("Books", "Index", "Books")</li>
+                    <li>@Html.ActionLink("Songs", "Index", "Songs")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Go to Cart", "DisplayCart", "Cart")</li>
+                    <li>@using (Html.BeginForm("Index", "Search", FormMethod.Post))
+                    {
+                        <input type="text" name="searchText" id="searchText" />
+                        <input type="submit" value="Search"/>
+                    }
+                    </li>
                 </ul>
+                
                 @Html.Partial("_LoginPartial")
             </div>
         </div>

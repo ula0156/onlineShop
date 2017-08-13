@@ -5,6 +5,7 @@ using onlineShopWeb.DataAccess;
 using onlineShopWeb.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace onlineShopWeb.Controllers
@@ -30,16 +31,18 @@ namespace onlineShopWeb.Controllers
             if (holidayManager.IsHoliday(DateTime.Now, out toSearch))
             {
                 // search items based on the keywords if it's a holiday
-                var listOfSearchedBooks = randomItemsProductPicker.PickItems(ProvidersFactory.GetProductsReader(),
-                    ProvidersFactory.GetStocksReader(),
+                var listOfSearchedBooks = randomItemsProductPicker.PickItems(
+                    ReadersFactory.GetProductsReader(),
+                    ReadersFactory.GetStocksReader(),
                     Filters.GetFilterByKeyWords(toSearch, typeof(Book)), 6);
                 listOfBooks = listOfSearchedBooks.ConvertAll(x => (Book)x);
                 return listOfBooks;
             }
             else
             {
-                var listOfRandomBooks = randomItemsProductPicker.PickItems(ProvidersFactory.GetProductsReader(),
-                    ProvidersFactory.GetStocksReader(),
+                var listOfRandomBooks = randomItemsProductPicker.PickItems(
+                    ReadersFactory.GetProductsReader(),
+                    ReadersFactory.GetStocksReader(),
                     Filters.GetFilterByType(typeof(Book)), 6);
                 listOfBooks = listOfRandomBooks.ConvertAll(x => (Book)x);
                 return listOfBooks;
@@ -57,16 +60,18 @@ namespace onlineShopWeb.Controllers
             if (holidayManager.IsHoliday(DateTime.Now, out toSearch))
             {
                 // search items based on the keywords if it's a holiday
-                var listOfSearchedSongs = randomItemsProductPicker.PickItems(ProvidersFactory.GetProductsReader(),
-                    ProvidersFactory.GetStocksReader(),
+                var listOfSearchedSongs = randomItemsProductPicker.PickItems(
+                    ReadersFactory.GetProductsReader(),
+                    ReadersFactory.GetStocksReader(),
                     Filters.GetFilterByKeyWords(toSearch, typeof(Song)), 6);
                 listOfSongs = listOfSearchedSongs.ConvertAll(x => (Song)x);
                 return listOfSongs;
             }
             else
             {
-                var listOfRandomBooks = randomItemsProductPicker.PickItems(ProvidersFactory.GetProductsReader(),
-                    ProvidersFactory.GetStocksReader(),
+                var listOfRandomBooks = randomItemsProductPicker.PickItems(
+                    ReadersFactory.GetProductsReader(),
+                    ReadersFactory.GetStocksReader(),
                     Filters.GetFilterByType(typeof(Song)), 6);
                 listOfSongs = listOfRandomBooks.ConvertAll(x => (Song)x);
                 return listOfSongs;

@@ -8,6 +8,6 @@ namespace onlineShopWeb.Models
     {
         public List<Book> BooksList { get; set; }
         public List<Song> SongsList { get; set; }
-        
+
     }
 }
