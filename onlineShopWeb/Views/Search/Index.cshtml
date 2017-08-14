@@ -10,13 +10,13 @@
 {
     if (item is Book) 
     {
-        @Html.ActionLink(item.Name, "Details", "Book", new { id = item.Name }, null)
+        @Html.ActionLink(item.Name, "Details", "Book", new { id = item.Id }, null)
         @item.Price<br />
     }
 
     if (item is Song)
     {
-        @Html.ActionLink(item.Name, "Details", "Song", new { id = item.Name }, null)
+        @Html.ActionLink(item.Name, "Details", "Song", new { id = item.Id }, null)
         @item.Price<br />
     }
 }

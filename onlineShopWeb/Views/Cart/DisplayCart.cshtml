@@ -1,4 +1,5 @@
-﻿@model onlineShopWeb.Models.CartViewModel
+﻿@using onlineShop.Products
+@model onlineShopWeb.Models.CartViewModel
 
 @{
     ViewBag.Title = "DisplayCart";
@@ -8,10 +9,27 @@
 <table class="table-responsive">
     @foreach (var item in Model.CartProducts)
     {
-        <tr>
-            <td> @item.Key.Name </td>
-            <td> @item.Value </td>            
-        </tr>
+        if (item.Key is Book)
+        {
+            <tr>
+                <td>@Html.ActionLink(item.Key.Name, "Details", "Books", new { id = item.Key.Id }, null)</td> 
+                <td> @item.Value </td> 
+                <td>@Html.ActionLink("Add copy", "AddToCart", "Cart", new { id = item.Key.Id }, null)</td> 
+                <td>@Html.ActionLink("Remove copy", "RemoveFromCart", "Cart", new { id = item.Key.Id }, null)</td>
+                
+
+            </tr>
+        }
+        else
+        {
+            <tr>
+                <td>@Html.ActionLink(item.Key.Name, "Details", "Songs", new { id = item.Key.Id }, null)</td>
+                <td> @item.Value </td>
+                <td>@Html.ActionLink("Add copy", "Details", "Songs", new { id = item.Key.Id }, null)</td>
+                <td>@Html.ActionLink("Remove copy", "RemoveFromCart", "Cart", new { id = item.Key.Id }, null)</td>
+
+            </tr>
+        }
     }
 </table>
 

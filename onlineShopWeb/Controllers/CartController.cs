@@ -49,6 +49,21 @@ namespace onlineShopWeb.Controllers
             return View(model);
         }
 
+        public RedirectToRouteResult RemoveFromCart(Guid id)
+        {
+            // when user wants to remove from cart:
+            // - find his cart by using identifier. Dictionary<Cart, identifier>
+            // - find corresponding product which has to be removed
+            // - call RemoveProduct method on cart, which also will take care of reservation.
+
+            var identifier = UserIdentifier.GetIdentifier(HttpContext);
+            var cart = ProvidersFactory.GetCartProvider().GetCart(identifier);
+            var product = ReadersFactory.GetProductsReader().GetProducts().First(guid => guid.Id == id);
+            cart.RemoveProduct(product);
+
+            return RedirectToAction("DisplayCart");
+        }
+
         public ActionResult Error()
         {
             return View();
