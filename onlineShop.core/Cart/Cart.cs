@@ -85,6 +85,12 @@ namespace onlineShop
 
                 _reservationsManager.CancelReservation(reservationToCancel.Id);
                 reservationList.Remove(reservationToCancel);
+                _reservations.Remove(reservationToCancel.Id);
+            }
+            // check if there is not any copies of the product left in the cart -> remove key (productId) from dictionary
+            if (reservationList.Count == 0)
+            {
+                _reservations.Remove(product.Id);
             }
         }
 

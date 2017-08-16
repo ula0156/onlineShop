@@ -1,4 +1,6 @@
-﻿using onlineShop.Data;
+﻿using onlineShop.core.Data;
+using onlineShop.core.Data.InMemory;
+using onlineShop.Data;
 using onlineShop.Data.Database;
 using onlineShop.Data.InMemory;
 
@@ -6,10 +8,17 @@ namespace onlineShopWeb.DataAccess
 {
     public static class ProvidersFactory
     {
-        private static ICartProvider _cartProvider = new InMemoryCartProvider(
+        private static ICartProvider _cartProvider = new CartProvider(
             GetProductsProvider(), 
             GetReservationsProvider(), 
             GetStocksProvider());
+
+        private static ISessionsProvider _sessionsProvider = new InMemorySessionsProvider();
+
+        public static ISessionsProvider GetSessionstProvider()
+        {
+            return _sessionsProvider;
+        }
 
         public static ICartProvider GetCartProvider()
         {

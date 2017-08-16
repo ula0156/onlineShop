@@ -204,7 +204,7 @@
     <Compile Include="Controllers\SongsController.cs" />
     <Compile Include="DataAccess\ProvidersFactory.cs" />
     <Compile Include="DataAccess\ReadersFactory.cs" />
-    <Compile Include="Global.asax.cs">
+    <Compile Include="DataAccess\Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201707312320258_InitialCreate.cs" />
@@ -232,7 +232,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Global.asax" />
+    <Content Include="DataAccess\Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />

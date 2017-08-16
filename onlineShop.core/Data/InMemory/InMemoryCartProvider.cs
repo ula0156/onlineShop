@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using System.Collections.Concurrent;
 using onlineShop.Managers;
 using onlineShop.Data;
+using System;
 
 namespace onlineShop.Data.InMemory
 {
-    public class InMemoryCartProvider : ICartProvider
+    public class CartProvider : ICartProvider
     {
         private ConcurrentDictionary<string, Cart> _carts;
         private IProductsProvider _productsProvider;
         private IReservationsProvider _reservationsProvider;
         private IStocksProvider _stocksProvider;
 
-        public InMemoryCartProvider(
+        public CartProvider(
             IProductsProvider productsProvider, 
             IReservationsProvider reservationsProvider, 
             IStocksProvider stocksProvider)
@@ -38,6 +39,11 @@ namespace onlineShop.Data.InMemory
             }
 
             return cart;
+        }
+
+        internal object GetCart()
+        {
+            throw new NotImplementedException();
         }
 
         public void CleanUpCart(List<string> listOfSessionAndLoginIds)

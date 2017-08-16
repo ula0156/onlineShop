@@ -1,5 +1,6 @@
 ﻿using onlineShop;
 using onlineShop.Managers;
+using onlineShop.Products;
 using onlineShopWeb.DataAccess;
 using onlineShopWeb.Models;
 using onlineShopWeb.Utility;
@@ -22,20 +23,25 @@ namespace onlineShopWeb.Controllers
 
             }
             var identifier = UserIdentifier.GetIdentifier(HttpContext);
-
             var cart = ProvidersFactory.GetCartProvider().GetCart(identifier);
             var product = ReadersFactory.GetProductsReader().GetProducts().First(guid => guid.Id == id);
+
+            string status;
             if (cart.TryAddProduct(product))
             {
-                return RedirectToAction("DisplayCart");
-            } else
-            {
-                return RedirectToAction("Error");
+                status = "Successfully added to cart.";
             }
+            else
+            {
+                status = "Product is out of stock. Try again later.";
+            }
+
+            return RedirectToAction("DisplayCart", new { status = status });
         }
 
-        public ActionResult DisplayCart()
+        public ActionResult DisplayCart(string status)
         {
+
             // HttpContext contains an information about current context
             // Encapsulates all HTTP-specific information about an individual HTTP request.
             var identifier = UserIdentifier.GetIdentifier(HttpContext);
@@ -45,6 +51,7 @@ namespace onlineShopWeb.Controllers
             model.CartProducts = cart.Products;
             model.TotalPrice = cart.TotalPrice();
             model.TotalWeight = cart.TotalWeight();
+            model.Status = status;
 
             return View(model);
         }
@@ -55,7 +62,6 @@ namespace onlineShopWeb.Controllers
             // - find his cart by using identifier. Dictionary<Cart, identifier>
             // - find corresponding product which has to be removed
             // - call RemoveProduct method on cart, which also will take care of reservation.
-
             var identifier = UserIdentifier.GetIdentifier(HttpContext);
             var cart = ProvidersFactory.GetCartProvider().GetCart(identifier);
             var product = ReadersFactory.GetProductsReader().GetProducts().First(guid => guid.Id == id);
@@ -63,10 +69,10 @@ namespace onlineShopWeb.Controllers
 
             return RedirectToAction("DisplayCart");
         }
-
+        
         public ActionResult Error()
         {
-            return View();
+            return Content("Product is out of stock");
         }
     }
 }

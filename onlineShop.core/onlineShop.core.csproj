@@ -62,12 +62,15 @@
     <Compile Include="Data\Database\StocksModel.cs" />
     <Compile Include="Data\Entities\Reservation.cs" />
     <Compile Include="Data\Entities\Stock.cs" />
+    <Compile Include="Data\InMemory\InMemorySessionsProvider.cs" />
+    <Compile Include="Data\InMemory\InMemorySessionsRepository.cs" />
     <Compile Include="Data\InMemory\InMemoryProductsProvider.cs" />
     <Compile Include="Data\InMemory\InMemoryProductsRepository.cs" />
     <Compile Include="Data\InMemory\InMemoryReservationProvider.cs" />
     <Compile Include="Data\InMemory\InMemoryReservationsRepository.cs" />
     <Compile Include="Data\InMemory\InMemoryStocksProvider.cs" />
     <Compile Include="Data\InMemory\InMemoryStocksRepository.cs" />
+    <Compile Include="Data\ISessionsProvider.cs" />
     <Compile Include="Data\IProductsProvider.cs" />
     <Compile Include="Data\IProductsReader.cs" />
     <Compile Include="Data\IReservationsProvider.cs" />
@@ -86,8 +89,10 @@
     <Compile Include="Products\Product.cs" />
     <Compile Include="Products\Song.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sessions\Session.cs" />
     <Compile Include="Specials\ExpiredReservationsDetector.cs" />
     <Compile Include="Specials\HolidayManager.cs" />
+    <Compile Include="Specials\InactiveSessionsDetector.cs" />
     <Compile Include="Specials\PromotionsManager.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -6,6 +6,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@if (Model.Status != null)
+{
+    @Model.Status
+}
+
 <table class="table-responsive">
     @foreach (var item in Model.CartProducts)
     {
