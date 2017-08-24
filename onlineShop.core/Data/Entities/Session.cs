@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace onlineShop.core.Sessions
+namespace onlineShop.core.Entities
 {
     public class Session
     {
         public string SessionId { get; set; }
-        public Cart Cart { get; set; }
         public DateTime LastTimeActive { get; set; }
         public bool IsLoggedInUser { get; set; }
 
@@ -17,6 +12,10 @@ namespace onlineShop.core.Sessions
         {
             SessionId = sessionId;
             IsLoggedInUser = isLoggedInUser;
+        }
+
+        private Session()
+        {
         }
     }
 }

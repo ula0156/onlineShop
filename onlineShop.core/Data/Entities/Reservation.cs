@@ -13,15 +13,18 @@ namespace onlineShop.Data.Entities
 
         public DateTime ExpirationTime { get; set; }
 
+        public String SessionId { get; set; }
+
         private Reservation()
         {
         }
 
-        public Reservation(Product product)
+        public Reservation(Product product, string sessionId)
         {
             Id = Guid.NewGuid();
             ProductId = product.Id;
             ExpirationTime = DateTime.Now + TimeSpan.FromMinutes(10);
+            SessionId = sessionId;
         }
     }
 }

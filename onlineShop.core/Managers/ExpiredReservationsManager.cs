@@ -4,7 +4,7 @@ using onlineShop.Specials;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace onlineShop.Managers
+namespace onlineShop.core.Managers
 {
     public class ExpiredReservationsManager
     {

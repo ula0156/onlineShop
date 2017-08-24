@@ -1,10 +1,11 @@
-﻿using onlineShop;
-using onlineShop.Managers;
+﻿using onlineShop.core.Entities;
+using onlineShop.core.Managers;
 using onlineShop.Products;
 using onlineShopWeb.DataAccess;
 using onlineShopWeb.Models;
 using onlineShopWeb.Utility;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -13,6 +14,8 @@ namespace onlineShopWeb.Controllers
 {
     public class CartController : Controller
     {
+        CartsManager cartManager = new CartsManager(ProvidersFactory.GetStocksProvider(), ProvidersFactory.GetProductsProvider(),ProvidersFactory.GetReservationsProvider(), ProvidersFactory.GetCartsProvider());
+
         public RedirectToRouteResult AddToCart(Guid id)
         {
             // HttpContext contains an information about current context
@@ -22,12 +25,17 @@ namespace onlineShopWeb.Controllers
                 throw new HttpException(404, "Product not found");
 
             }
-            var identifier = UserIdentifier.GetIdentifier(HttpContext);
-            var cart = ProvidersFactory.GetCartProvider().GetCart(identifier);
+            bool isLoggedIn;
+            var identifier = UserIdentifier.GetIdentifier(HttpContext, out isLoggedIn);
+
+            //updating last active session
+            ProvidersFactory.GetSessionsProvider().UpdateOrAddSession(identifier, isLoggedIn);
+            
             var product = ReadersFactory.GetProductsReader().GetProducts().First(guid => guid.Id == id);
 
             string status;
-            if (cart.TryAddProduct(product))
+
+            if (cartManager.TryAddProduct(product, identifier))
             {
                 status = "Successfully added to cart.";
             }
@@ -44,13 +52,16 @@ namespace onlineShopWeb.Controllers
 
             // HttpContext contains an information about current context
             // Encapsulates all HTTP-specific information about an individual HTTP request.
-            var identifier = UserIdentifier.GetIdentifier(HttpContext);
+            bool isLoggedIn;
+            var identifier = UserIdentifier.GetIdentifier(HttpContext, out isLoggedIn);
 
-            var cart = ProvidersFactory.GetCartProvider().GetCart(identifier);
+            ProvidersFactory.GetSessionsProvider().UpdateOrAddSession(identifier, isLoggedIn);
+            var cart = cartManager.GetCartBySessionId(identifier);
+            var cartToDisplay = cartManager.ConvertCartToDictionary(cart);
             CartViewModel model = new CartViewModel();
-            model.CartProducts = cart.Products;
-            model.TotalPrice = cart.TotalPrice();
-            model.TotalWeight = cart.TotalWeight();
+            model.CartProducts = cartToDisplay;
+            model.TotalPrice = cartManager.GetTotalPrice(cartToDisplay);
+            model.TotalWeight = cartManager.GetTotalWeight(cartToDisplay);
             model.Status = status;
 
             return View(model);
@@ -62,10 +73,18 @@ namespace onlineShopWeb.Controllers
             // - find his cart by using identifier. Dictionary<Cart, identifier>
             // - find corresponding product which has to be removed
             // - call RemoveProduct method on cart, which also will take care of reservation.
-            var identifier = UserIdentifier.GetIdentifier(HttpContext);
-            var cart = ProvidersFactory.GetCartProvider().GetCart(identifier);
+            if (id == null)
+            {
+                throw new HttpException(400, "Bad Request");
+            }
+
+            bool isLoggedIn;
+            var identifier = UserIdentifier.GetIdentifier(HttpContext, out isLoggedIn);
+
+            ProvidersFactory.GetSessionsProvider().UpdateOrAddSession(identifier, isLoggedIn);
+
             var product = ReadersFactory.GetProductsReader().GetProducts().First(guid => guid.Id == id);
-            cart.RemoveProduct(product);
+            cartManager.RemoveProduct(product, identifier);
 
             return RedirectToAction("DisplayCart");
         }

@@ -1,19 +1,34 @@
-﻿using onlineShop.Entities;
+﻿using onlineShop;
+using onlineShop.Entities;
+using onlineShop.Managers;
 using onlineShop.ProductPickers;
 using onlineShop.Products;
 using onlineShopWeb.DataAccess;
 using onlineShopWeb.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web.Mvc;
 
 namespace onlineShopWeb.Controllers
 {
     public class HomeController : Controller
     {
+        private static bool shouldInitializeDatabase = false;
+
+        private void InitializeDatabaseIfNeeded()
+        {
+            if (shouldInitializeDatabase)
+            {
+                shouldInitializeDatabase = false;
+                var initializer = new DatabaseInitializer();
+                var pm = new ProductsManager(ProvidersFactory.GetProductsProvider(), ProvidersFactory.GetStocksProvider());
+                initializer.InitializeDatabase(pm);
+            }
+        }
+
         public ActionResult Index()
         {
+            InitializeDatabaseIfNeeded();
             HomeViewModel model = new HomeViewModel();
             model.BooksList = GetBooks();
             model.SongsList = GetSongs();

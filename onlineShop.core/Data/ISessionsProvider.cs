@@ -1,10 +1,9 @@
-﻿using onlineShop.core.Sessions;
+﻿using onlineShop.core.Entities;
 
 namespace onlineShop.core.Data
 {
      public interface ISessionsProvider
     {
-        Session UpdateOrAddSession(string sessionId, bool isLoggedInUser);
-        Session GetSession(string sessionId);
+        void UpdateOrAddSession(string sessionId, bool isLoggedInUser);
     }
 }

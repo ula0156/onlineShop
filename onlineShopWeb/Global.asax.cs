@@ -1,4 +1,5 @@
-﻿using onlineShop.Managers;
+﻿using onlineShop.core.Managers;
+using onlineShop.Managers;
 using onlineShopWeb.DataAccess;
 using System;
 using System.Web.Mvc;

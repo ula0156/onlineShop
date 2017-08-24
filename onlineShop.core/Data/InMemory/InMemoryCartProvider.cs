@@ -7,61 +7,61 @@ using System;
 
 namespace onlineShop.Data.InMemory
 {
-    public class CartProvider : ICartProvider
-    {
-        private ConcurrentDictionary<string, Cart> _carts;
-        private IProductsProvider _productsProvider;
-        private IReservationsProvider _reservationsProvider;
-        private IStocksProvider _stocksProvider;
+    //public class InMemoryCartProvider : ICartProvider
+    //{
+    //    private ConcurrentDictionary<string, Cart> _carts;
+    //    private IProductsProvider _productsProvider;
+    //    private IReservationsProvider _reservationsProvider;
+    //    private IStocksProvider _stocksProvider;
 
-        public CartProvider(
-            IProductsProvider productsProvider, 
-            IReservationsProvider reservationsProvider, 
-            IStocksProvider stocksProvider)
-        {
-            _carts = new ConcurrentDictionary<string, Cart>();
-            _productsProvider = productsProvider;
-            _reservationsProvider = reservationsProvider;
-            _stocksProvider = stocksProvider;
-        }
+    //    public InMemoryCartProvider(
+    //        IProductsProvider productsProvider, 
+    //        IReservationsProvider reservationsProvider, 
+    //        IStocksProvider stocksProvider)
+    //    {
+    //        _carts = new ConcurrentDictionary<string, Cart>();
+    //        _productsProvider = productsProvider;
+    //        _reservationsProvider = reservationsProvider;
+    //        _stocksProvider = stocksProvider;
+    //    }
 
-        public Cart GetCart(string userIdentifier)
-        {
-            if (_carts.ContainsKey(userIdentifier))
-            {
-                return _carts[userIdentifier];
-            }
+    //    public Cart GetCart(string userIdentifier)
+    //    {
+    //        if (_carts.ContainsKey(userIdentifier))
+    //        {
+    //            return _carts[userIdentifier];
+    //        }
 
-            var cart = CreateNewCart();
-            if (!_carts.TryAdd(userIdentifier, cart))
-            {
-                return _carts[userIdentifier];
-            }
+    //        var cart = CreateNewCart();
+    //        if (!_carts.TryAdd(userIdentifier, cart))
+    //        {
+    //            return _carts[userIdentifier];
+    //        }
 
-            return cart;
-        }
+    //        return cart;
+    //    }
 
-        internal object GetCart()
-        {
-            throw new NotImplementedException();
-        }
+    //    internal object GetCart()
+    //    {
+    //        throw new NotImplementedException();
+    //    }
 
-        public void CleanUpCart(List<string> listOfSessionAndLoginIds)
-        {
-            foreach (string userIdentifier in listOfSessionAndLoginIds)
-            {
-                Cart cart;
-                _carts.TryRemove(userIdentifier, out cart);
-            }
-        }
+    //    public void CleanUpCart(List<string> listOfSessionAndLoginIds)
+    //    {
+    //        foreach (string userIdentifier in listOfSessionAndLoginIds)
+    //        {
+    //            Cart cart;
+    //            _carts.TryRemove(userIdentifier, out cart);
+    //        }
+    //    }
 
-        private Cart CreateNewCart()
-        {
-            return new Cart(
-                _productsProvider,
-                new ReservationsManager(
-                    _stocksProvider,
-                    _reservationsProvider));
-        }
-    }
+    //    public Cart CreateNewCart()
+    //    {
+    //        return new Cart(
+    //            _productsProvider,
+    //            new ReservationsManager(
+    //                _stocksProvider,
+    //                _reservationsProvider));
+    //    }
+    //}
 }

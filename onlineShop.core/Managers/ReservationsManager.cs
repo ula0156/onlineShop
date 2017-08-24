@@ -1,7 +1,9 @@
-﻿using onlineShop.Data;
+﻿using onlineShop.core.Entities;
+using onlineShop.Data;
 using onlineShop.Data.Entities;
 using onlineShop.Products;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace onlineShop.Managers
@@ -17,11 +19,11 @@ namespace onlineShop.Managers
             _reservationsProvider = reservationsProvider;
         }
 
-        public bool TryToReserveProduct(Product product, out Reservation reservation)
+        public bool TryToReserveProduct(Product product, string sessionId, out Reservation reservation)
         {
             if (_stocksProvider.TryDecreaseStock(product.Id, 1))
             {
-                reservation = new Reservation(product);
+                reservation = new Reservation(product, sessionId);
                 if (!_reservationsProvider.TryAddReservation(reservation))
                 {
                     // in case attempt to add reservation to the reservedInventory failed -> increase stock

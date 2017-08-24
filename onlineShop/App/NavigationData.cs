@@ -11,7 +11,6 @@ namespace onlineShop.App
     {
         public IProductsReader ProductsReader;
         public IStocksReader StocksReader;
-        public Cart Cart;
         public Stack<IPage> PreviousPages;
 
         public NavigationData()
