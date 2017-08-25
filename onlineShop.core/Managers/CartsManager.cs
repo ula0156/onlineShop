@@ -26,6 +26,7 @@ namespace onlineShop.core.Managers
             _cartsProvider = cartProvider;
         }
 
+        // Return a cart associated with this sessionId
         public Cart GetCartBySessionId(string sessionId)
         {
             // look for cart in CartDb
@@ -34,6 +35,8 @@ namespace onlineShop.core.Managers
             return cart;
         }
 
+        //This method using ReservationManager is trying to reserve a product
+        // if product is reserved -> it aslo adding to the cart
         public bool TryAddProduct(Product product, string sessionId)
         {
             Reservation reservation;
@@ -49,10 +52,9 @@ namespace onlineShop.core.Managers
             return false;
         }
 
-        //when user wants to remove product from the cart:
+        //When user wants to remove product from the cart:
         // - calling reservationmanager to remove product from the reservationDb and update inventory
         // - removing product from the cartDB;
-
         public void RemoveProduct(Product product, string sessionId)
         {
             var listOdReservations = _reservationsProvider.GetReservations().Where(sId => sId.SessionId == sessionId).ToList();
@@ -70,16 +72,15 @@ namespace onlineShop.core.Managers
             _cartsProvider.SaveCart(cart);
         }
 
+        
+        /**
+         * Get all reservations for this sessionId existing in reservationDB
+         * go over them and try to renew (through the reservationManager)
+         * If there are some reservation which had to be removed from reservationDB -> try to reserve them again
+         * update cart
+        */
         public void UpdateCart(Cart cart)
-        {
-            // - check if items are still reserved : Y - set expiration time for extra minutes
-                                                 //  N - try to reserve again
-            /**
-             * Get all reservations for this sessionId existing in reservationDB
-             * go over them and try to renew (through the reservationManager)
-             * update cart
-             * 
-            */
+        { 
             var listOfReservations = (List<Reservation>)_reservationsProvider.GetReservations().Where(sId => sId.SessionId == cart.SessionId);
 
             Dictionary<Guid, Guid> dictionaryOfReservedProducts = new Dictionary<Guid, Guid>(); // productId and reservationId
@@ -102,7 +103,6 @@ namespace onlineShop.core.Managers
                     break;
                 }
             }
-            // updating cart at the end
             listOfReservations = (List<Reservation>)_reservationsProvider.GetReservations().Where(sId => sId.SessionId == cart.SessionId);
             cart.Products = new List<Guid>();
             foreach (var reservation in listOfReservations)
@@ -113,7 +113,7 @@ namespace onlineShop.core.Managers
             _cartsProvider.SaveCart(cart);
         }
 
-        public Dictionary<Product, int> ConvertCartToDictionary(Cart cart)
+        public Dictionary<Product, int> GetProductsCount(Cart cart)
         {
             Dictionary<Product, int> cartToDisplay = new Dictionary<Product, int>();
 

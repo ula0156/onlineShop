@@ -21,6 +21,7 @@ namespace onlineShop.core.Data.Database
             if (session == null)
             {
                 session = new Session(sessionId, isLoggedInUser);
+                _sessionsModel.Sessions.Add(session);
             }
             else
             {

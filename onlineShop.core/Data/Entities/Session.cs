@@ -10,6 +10,7 @@ namespace onlineShop.core.Entities
 
         public Session(string sessionId, bool isLoggedInUser)
         {
+            LastTimeActive = DateTime.Now;
             SessionId = sessionId;
             IsLoggedInUser = isLoggedInUser;
         }

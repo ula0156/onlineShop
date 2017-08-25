@@ -29,8 +29,6 @@ namespace onlineShopWeb.Controllers
                 Filters.GetFilterByType(typeof(Song)), 4);
             return listOfSongs.ConvertAll(x => (Song)x);
         }
-
-        // in the index view -> see hyperLink where id is indicated!
         public ActionResult Details(Guid id)
         {
             if (id == null)
@@ -40,6 +38,5 @@ namespace onlineShopWeb.Controllers
             var song = ReadersFactory.GetProductsReader().GetProducts().First(i => i.Id == id);
             return View(song);
         }
-
     }
 }

@@ -49,7 +49,6 @@ namespace onlineShopWeb.Controllers
 
         public ActionResult DisplayCart(string status)
         {
-
             // HttpContext contains an information about current context
             // Encapsulates all HTTP-specific information about an individual HTTP request.
             bool isLoggedIn;
@@ -57,7 +56,7 @@ namespace onlineShopWeb.Controllers
 
             ProvidersFactory.GetSessionsProvider().UpdateOrAddSession(identifier, isLoggedIn);
             var cart = cartManager.GetCartBySessionId(identifier);
-            var cartToDisplay = cartManager.ConvertCartToDictionary(cart);
+            var cartToDisplay = cartManager.GetProductsCount(cart);
             CartViewModel model = new CartViewModel();
             model.CartProducts = cartToDisplay;
             model.TotalPrice = cartManager.GetTotalPrice(cartToDisplay);
@@ -70,7 +69,7 @@ namespace onlineShopWeb.Controllers
         public RedirectToRouteResult RemoveFromCart(Guid id)
         {
             // when user wants to remove from cart:
-            // - find his cart by using identifier. Dictionary<Cart, identifier>
+            // - find his cart by using identifier. 
             // - find corresponding product which has to be removed
             // - call RemoveProduct method on cart, which also will take care of reservation.
             if (id == null)

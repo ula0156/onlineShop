@@ -239,6 +239,10 @@
     <Compile Include="Migrations\201708240512231_cart4.Designer.cs">
       <DependentUpon>201708240512231_cart4.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708251840034_Session.cs" />
+    <Compile Include="Migrations\201708251840034_Session.Designer.cs">
+      <DependentUpon>201708251840034_Session.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CartViewModels.cs" />
@@ -360,6 +364,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708240512231_cart4.resx">
       <DependentUpon>201708240512231_cart4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708251840034_Session.resx">
+      <DependentUpon>201708251840034_Session.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
