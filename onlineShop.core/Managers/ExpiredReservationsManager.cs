@@ -1,9 +1,10 @@
 ﻿using onlineShop.Data;
 using onlineShop.Data.Entities;
 using onlineShop.Specials;
+using System.Collections.Generic;
 using System.Linq;
 
-namespace onlineShop.Managers
+namespace onlineShop.core.Managers
 {
     public class ExpiredReservationsManager
     {
@@ -18,7 +19,7 @@ namespace onlineShop.Managers
             _reservationsProvider = reservationsProvider;
         }
 
-        public void UponExpiredReservations(IQueryable<Reservation> reservations)
+        public void UponExpiredReservations(List<Reservation> reservations)
         {
             foreach (var reservation in reservations)
             {

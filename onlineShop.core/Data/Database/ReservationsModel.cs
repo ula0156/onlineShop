@@ -1,6 +1,7 @@
 namespace onlineShop.Data.Database
 {
     using Entities;
+    using onlineShop.core.Entities;
     using System.Data.Entity;
 
     public class ReservationsModel : DbContext
@@ -20,6 +21,8 @@ namespace onlineShop.Data.Database
         // on configuring and using a Code First model, see http://go.microsoft.com/fwlink/?LinkId=390109.
 
         public virtual DbSet<Reservation> Reservations { get; set; }
+        public virtual DbSet<Session> Sessions { get; set; }
+        public virtual DbSet<Cart> Carts { get; set; }
     }
 }
 

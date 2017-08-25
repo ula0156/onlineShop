@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using onlineShop.core.Managers;
+using onlineShop.Managers;
+using onlineShopWeb.DataAccess;
+using System;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
@@ -21,6 +21,13 @@ namespace onlineShopWeb
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            StartMonitors();
+        }
+
+        private void StartMonitors()
+        {
+            ReservationsManager _reservationsManager = new ReservationsManager(ProvidersFactory.GetStocksProvider(), ProvidersFactory.GetReservationsProvider());
+            ExpiredReservationsManager _expiredReservationsManager = new ExpiredReservationsManager(ProvidersFactory.GetReservationsProvider());
         }
     }
 }

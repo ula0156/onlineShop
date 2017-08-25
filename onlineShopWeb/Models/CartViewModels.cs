@@ -8,5 +8,6 @@ namespace onlineShopWeb.Models
         public IReadOnlyDictionary<Product, int> CartProducts { get; set; }
         public double TotalPrice { get; set; }
         public double TotalWeight { get; set; }
+        public string Status { get; set; }
     }
 }

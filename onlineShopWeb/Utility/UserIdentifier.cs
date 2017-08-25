@@ -8,16 +8,16 @@ namespace onlineShopWeb.Utility
 {
     public static class UserIdentifier
     {
-        public static string GetIdentifier(HttpContextBase context)
+        public static string GetIdentifier(HttpContextBase context, out bool isLoggedIn)
         {
             if (HttpContext.Current.User.Identity.IsAuthenticated)
             {
+                isLoggedIn = true;
                 return context.User.Identity.Name;
             }
-            else
-            {
-                return context.Session.SessionID;
-            }
+
+            isLoggedIn = false;
+            return context.Session.SessionID;
         }        
     }
 }
