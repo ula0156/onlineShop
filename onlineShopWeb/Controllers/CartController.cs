@@ -1,11 +1,8 @@
-﻿using onlineShop.core.Entities;
-using onlineShop.core.Managers;
-using onlineShop.Products;
+﻿using onlineShop.core.Managers;
 using onlineShopWeb.DataAccess;
 using onlineShopWeb.Models;
 using onlineShopWeb.Utility;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -27,9 +24,6 @@ namespace onlineShopWeb.Controllers
             }
             bool isLoggedIn;
             var identifier = UserIdentifier.GetIdentifier(HttpContext, out isLoggedIn);
-
-            //updating last active session
-            ProvidersFactory.GetSessionsProvider().UpdateOrAddSession(identifier, isLoggedIn);
             
             var product = ReadersFactory.GetProductsReader().GetProducts().First(guid => guid.Id == id);
 

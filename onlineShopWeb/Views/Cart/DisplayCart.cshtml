@@ -21,8 +21,6 @@
                 <td> @item.Value </td> 
                 <td>@Html.ActionLink("Add copy", "AddToCart", "Cart", new { id = item.Key.Id }, null)</td> 
                 <td>@Html.ActionLink("Remove copy", "RemoveFromCart", "Cart", new { id = item.Key.Id }, null)</td>
-                
-
             </tr>
         }
         else
@@ -32,7 +30,6 @@
                 <td> @item.Value </td>
                 <td>@Html.ActionLink("Add copy", "Details", "Songs", new { id = item.Key.Id }, null)</td>
                 <td>@Html.ActionLink("Remove copy", "RemoveFromCart", "Cart", new { id = item.Key.Id }, null)</td>
-
             </tr>
         }
     }

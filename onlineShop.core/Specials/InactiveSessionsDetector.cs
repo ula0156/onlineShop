@@ -5,6 +5,11 @@ using System.Timers;
 
 namespace onlineShop.core.Specials
 {
+    /*
+     * TODO:
+     *      Implement InactiveSessionsDetector which will detect all inactive sessions
+     *      and reports them to InactiveSessionsManager, which will clean them up from the database.
+     */
     //public class InactiveSessionsDetector
     //{
     //    public delegate void InactiveSessionsHandler(List<string> listOfInactiveSessions);

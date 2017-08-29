@@ -17,7 +17,10 @@ namespace onlineShop.core.Managers
         private ReservationsManager _reservationsManager;
         private ICartsProvider _cartsProvider;
 
-        public CartsManager(IStocksProvider stocksProvider, IProductsProvider productsProvider, IReservationsProvider reservationsProvider, ICartsProvider cartProvider)
+        public CartsManager(IStocksProvider stocksProvider,
+            IProductsProvider productsProvider,
+            IReservationsProvider reservationsProvider,
+            ICartsProvider cartProvider)
         {
             _stocksProvider = stocksProvider;
             _productsProvider = productsProvider;
@@ -35,8 +38,8 @@ namespace onlineShop.core.Managers
             return cart;
         }
 
-        //This method using ReservationManager is trying to reserve a product
-        // if product is reserved -> it aslo adding to the cart
+        // This method is using ReservationsManager, in order to reserve a product
+        // If product got reserved -> it aslo being added to the cart
         public bool TryAddProduct(Product product, string sessionId)
         {
             Reservation reservation;
@@ -153,26 +156,27 @@ namespace onlineShop.core.Managers
                 {
                     PhysicalProduct physicalItem = item.Key as PhysicalProduct;
                     totalWeight += physicalItem.Size.Weight * item.Value;
-                    return totalWeight;
                 }
             }
 
-            return 0;
+            return totalWeight;
         }
-
-        //public void CompletePurchase(Cart cart)
-        //{
-        //    // when user purchased products:
-        //    //- call CompleteReservation on reservationManager to remove reservations from reservedInventory.
-        //    //- remove reservation from the card
-        //    foreach (var product in _reservations)
-        //    {
-        //        _reservationsManager.TryCompleteReservation(product.Key);
-        //        _reservations.Remove(product.Key);
-        //    }
-        //}
-
-
-
+        
+        // when user purchased products:
+        //- call completereservation on reservationmanager to remove reservations from reservedinventory.
+        //- remove reservation from the card
+        public void CompletePurchase(Cart cart)
+        {
+            foreach (var product in cart._Products)
+            {
+                var reservations = _reservationsProvider.GetReservations().Where(reservation => reservation.SessionId == cart.SessionId).ToList();
+                foreach (var reservation in reservations)
+                {
+                    _reservationsManager.TryCompleteReservation(reservation.Id);
+                }
+                
+                cart._Products.Remove(product);
+            }
+        }
     }
 }
