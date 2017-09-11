@@ -3,10 +3,13 @@
 **1. Introduction**
 ----
 
-This project implements an online shop for books and music. Following functionalities are available:
-	- User registration.
-	- Searching for a particular product.
-	- Session and cart management. 
+This project implements an online shop for books and music.
+
+Following functionalities are available:
+
+- User registration.
+- Searching for a particular product.
+- Session and cart management. 
 
 Checkout is not currently implemented.
 
