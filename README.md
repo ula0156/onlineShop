@@ -2,13 +2,13 @@
 **1. Introduction**
 ----
 
-This project implements an online shop for books and music. Following functionalities are available:
+ This project implements an online shop for books and music. Following functionalities are available:
 	- User registration.
 	- Searching for a particular product.
 	- Session and cart management. 
 
 Checkout is not currently implemented.
-
+ 
 **2. Tools and technologies used**:
 ----
 	- Visual Studio 2017
@@ -18,16 +18,18 @@ Checkout is not currently implemented.
 	- Database
 		- Microsoft SQL Server
 		- Entity Framework 6
-	- Azure Web Apps
+		- Azure Web Apps
 	
 	
 **3. Architecture**. 
 ------
+
 **This solution consists of 2 separated projects: core and web.**
 	
 * **Core**
 
-	Core implements data models, data access and most of the business logic.
+
+Core implements data models, data access and most of the business logic.
 	Following data models were implemented:
 	- Reservations model
 	- Carts model
@@ -48,7 +50,6 @@ Checkout is not currently implemented.
 * **Web** 
 
 	The web project contains the HTTP specific code: models, views and controllers.
-	
 			• Models:
 				- Home View Model
 				- Cart View Model
@@ -59,15 +60,15 @@ Checkout is not currently implemented.
 				 - Songs view, display list of available songs
 				 - Cart view, display list of products added to the cart. 
 			• Controllers:
-				Controllers receive html requests and perform necessary steps to gather information and pass it to model or view directly.
-				- Home controller. 
-				 - Books controller
-				 - Songs controller
-				 - Cart controller
-				 - Search controller
+				     - Home controller 
+				     - Books controller
+				     - Songs controller
+				     - Cart controller
+				     - Search controller
 				
 **Future improvements**:
 
-* Add checkout page
+* Add checkout page.
 * Personalize content based on user purchase history as well as trends (currently we only update the content based on special occasions)
-* Improve UI.
+* Improve UI design.
+* Add admin page to manage products/promotions/stocks.
