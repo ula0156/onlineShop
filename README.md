@@ -1,14 +1,15 @@
 # onlineShop
+
 **1. Introduction**
 ----
 
- This project implements an online shop for books and music. Following functionalities are available:
+This project implements an online shop for books and music. Following functionalities are available:
 	- User registration.
 	- Searching for a particular product.
 	- Session and cart management. 
 
 Checkout is not currently implemented.
- 
+
 **2. Tools and technologies used**:
 ----
 	- Visual Studio 2017
@@ -23,13 +24,11 @@ Checkout is not currently implemented.
 	
 **3. Architecture**. 
 ------
-
 **This solution consists of 2 projects: core and web.**
 	
 * **Core**
 
-
-Core implements data models, data access and most of the business logic.
+	Core implements data models, data access and most of the business logic.
 	Following data models were implemented:
 	- Reservations model
 	- Carts model
@@ -50,6 +49,7 @@ Core implements data models, data access and most of the business logic.
 * **Web** 
 
 	The web project contains the HTTP specific code: models, views and controllers.
+	
 			• Models:
 				- Home View Model
 				- Cart View Model
@@ -60,15 +60,16 @@ Core implements data models, data access and most of the business logic.
 				 - Songs view, display list of available songs
 				 - Cart view, display list of products added to the cart. 
 			• Controllers:
-				     - Home controller 
-				     - Books controller
-				     - Songs controller
-				     - Cart controller
-				     - Search controller
+				 - Home controller
+				 - Books controller
+				 - Songs controller
+				 - Cart controller
+				 - Search controller
 				
 **Future improvements**:
 
-* Add checkout page.
+* Add checkout page
 * Personalize content based on user purchase history as well as trends (currently we only update the content based on special occasions)
-* Improve UI design.
-* Add admin page to manage products/promotions/stocks.
+* Improve UI design
+* Add admin page to manage products/promotions/stocks
+
