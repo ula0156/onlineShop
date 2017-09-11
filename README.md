@@ -18,13 +18,13 @@ Checkout is not currently implemented.
 	- Database
 		- Microsoft SQL Server
 		- Entity Framework 6
-		- Azure Web Apps
+	- Azure Web Apps
 	
 	
 **3. Architecture**. 
 ------
 
-**This solution consists of 2 separated projects: core and web.**
+**This solution consists of 2 projects: core and web.**
 	
 * **Core**
 
