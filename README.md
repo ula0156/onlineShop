@@ -1,5 +1,5 @@
 # onlineShop
-1. Introduction
+**1. Introduction**
 ----
 
 This project implements an online shop for books and music. Following functionalities are available:
@@ -9,7 +9,7 @@ This project implements an online shop for books and music. Following functional
 
 Checkout is not currently implemented.
 
-2. Tools and technologies used:
+**2. Tools and technologies used**:
 ----
 	- Visual Studio 2017
 	- Web frameworks
@@ -21,7 +21,7 @@ Checkout is not currently implemented.
 	- Azure Web Apps
 	
 	
-3. Architecture. 
+**3. Architecture**. 
 ------
 **This solution consists of 2 separated projects: core and web.**
 	
