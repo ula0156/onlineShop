@@ -1,4 +1,4 @@
-# onlineShop - URL http://juliaeclipse.azurewebsites.net/
+# onlineShop - http://juliaeclipse.azurewebsites.net/
 
 **1. Introduction**
 ----
