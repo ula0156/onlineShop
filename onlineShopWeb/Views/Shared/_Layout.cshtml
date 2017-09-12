@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/Content/style.css" rel="stylesheet"/>
     <title>@ViewBag.Title - Eclipse</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -21,18 +22,20 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Books", "Index", "Books")</li>
-                    <li>@Html.ActionLink("Songs", "Index", "Songs")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Go to Cart", "DisplayCart", "Cart")</li>
-                    <li>@using (Html.BeginForm("Index", "Search", FormMethod.Post))
+                    <li>@Html.ActionLink("Books", "GetBooksNoCategory", "Books")</li>
+                    <li>@Html.ActionLink("Songs", "GetSongsNoCategory", "Songs")</li>
+                    <li class="search">@using (Html.BeginForm("Index", "Search", FormMethod.Get))
                     {
-                        <input type="text" name="searchText" id="searchText" />
+                        <input type="text" name="searchText" id="searchText" placeholder="Search..">
                         <input type="submit" value="Search"/>
                     }
                     </li>
+                    <li>
+                        <a href='@Url.Action("DisplayCart", "Cart")'>
+                            <img class="cart" src='@Url.Content("~/Assets/Images/cart.png")' />
+                        </a>
+                    </li>
                 </ul>
-                
                 @Html.Partial("_LoginPartial")
             </div>
         </div>

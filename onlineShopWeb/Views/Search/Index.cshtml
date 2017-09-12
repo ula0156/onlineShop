@@ -2,23 +2,54 @@
 @model onlineShopWeb.Models.SearchViewModel
 
 @{
+    <link href="~/Content/style.css" rel="stylesheet" />
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@foreach (var item in Model.ListOfProducts)
-{
-    if (item is Book) 
+<table class="table personalizeTable">
+    <tr>
+        <th>
+            @Html.Label("Product Type")
+        </th>
+        <th>
+            @Html.Label("Title")
+        </th>
+        <th>
+            @Html.Label("Price")
+        </th>
+    </tr>
+    
+    @foreach (var item in Model.ListOfProducts)
     {
-        @Html.ActionLink(item.Name, "Details", "Book", new { id = item.Id }, null)
-        @item.Price<br />
-    }
+        <tr>
+            <td>
+                @if(item is Book) 
+                {
+                    <img class="icon" src="~/Assets/Images/book.png"/>
+                    @Html.Label("Book")
+                }
+                else
+                {
+                    <img class="icon" src="~/Assets/Images/song.png"/>
+                    @Html.Label("Song")
+                }
 
-    if (item is Song)
-    {
-        @Html.ActionLink(item.Name, "Details", "Song", new { id = item.Id }, null)
-        @item.Price<br />
+            </td>
+            <td>
+                @if (item is Book)
+                {
+                    @Html.ActionLink(item.Name, "Details", "Books", new { id = item.Id }, null)
+                }
+                else
+                {
+                    @Html.ActionLink(item.Name, "Details", "Songs", new { id = item.Id }, null)
+                }
+            </td>
+            <td>
+                $@Html.DisplayFor(modelItem => item.Price)
+            </td>
+        </tr>
     }
-}
-
+</table>
 

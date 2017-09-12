@@ -1,10 +1,11 @@
 ﻿@model IEnumerable<onlineShop.Products.Book>
 
 @{
+    <link href="~/Content/style.css" rel="stylesheet" />
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 } 
-<table class="table">
+<table class="table personalizeTable">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Name)
@@ -21,16 +22,16 @@
 @foreach (var book in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => book.Name)
+            <img class="icon" src="~/Assets/Images/book.png" />
+            @Html.ActionLink(book.Name, "Details", new { id = book.Id }, null)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => book.Price)
+            $@Html.DisplayFor(modelItem => book.Price)
         </td>
         <td>    
-            @Html.DisplayFor(modelItem => book.Author)
+            @Html.ActionLink(book.Author, "Index", "Search", new { searchText = book.Author }, null)
         </td>
         <td>
-            @Html.ActionLink("Details", "Details", new { id= book.Id }, null) 
             @Html.ActionLink("Add to cart", "AddToCart", "Cart", new { id = book.Id }, null)
         </td>
     </tr>

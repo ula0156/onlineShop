@@ -1,82 +1,48 @@
 ﻿@model onlineShop.Products.Book
 
 @{
+    <link href="~/Content/style.css" rel="stylesheet" />
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+    <table class="table personalizeTable">
+        <tr>
+            <th>
+                @Html.Label("Titel")
+            </th>
+            <th>
+                @Html.Label("Author")
+            </th>
+            <th>
+                @Html.Label("Price")
+            </th>
+            <th>
+                @Html.Label("Genre")
+            </th>
+            <th>
+                @Html.Label("Number of pages")
+            </th>
+        </tr>
+        <tr>
+            <td>
+                <img class="icon" src="~/Assets/Images/book.png" />
+                @Html.DisplayFor(model => model.Name)
+            </td>
+            <td>
+                @Html.ActionLink(Model.Author, "Index", "Search", new { searchText = Model.Author }, null)
+            </td>
+            <td>
+                $@Html.DisplayFor(model => model.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Genre)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.NumberOfPages)
+            </td>
+        </tr>
 
-<h2>Details</h2>
-
-<div>
-    <h4>Book</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Tags)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Tags)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Color)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Color)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Size)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Size)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NumberOfPages)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NumberOfPages)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Author)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Author)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Genre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Genre)
-        </dd>
-
-    </dl>
-</div>
+    </table>
 <p>
     @Html.ActionLink("Add to cart", "AddToCart", "Cart", new { id = Model.Id }, null) |
     @Html.ActionLink("Back to List", "Index")

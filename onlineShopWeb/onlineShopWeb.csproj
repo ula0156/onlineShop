@@ -207,43 +207,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201707312320258_InitialCreate.cs" />
-    <Compile Include="Migrations\201707312320258_InitialCreate.Designer.cs">
-      <DependentUpon>201707312320258_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708020454384_Attribute.cs" />
-    <Compile Include="Migrations\201708020454384_Attribute.Designer.cs">
-      <DependentUpon>201708020454384_Attribute.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708240438436_cart.cs" />
-    <Compile Include="Migrations\201708240438436_cart.Designer.cs">
-      <DependentUpon>201708240438436_cart.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708240450288_cart1.cs" />
-    <Compile Include="Migrations\201708240450288_cart1.Designer.cs">
-      <DependentUpon>201708240450288_cart1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708240458071_cart11.cs" />
-    <Compile Include="Migrations\201708240458071_cart11.Designer.cs">
-      <DependentUpon>201708240458071_cart11.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708240459186_cart2.cs" />
-    <Compile Include="Migrations\201708240459186_cart2.Designer.cs">
-      <DependentUpon>201708240459186_cart2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708240503340_cart3.cs" />
-    <Compile Include="Migrations\201708240503340_cart3.Designer.cs">
-      <DependentUpon>201708240503340_cart3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708240512231_cart4.cs" />
-    <Compile Include="Migrations\201708240512231_cart4.Designer.cs">
-      <DependentUpon>201708240512231_cart4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708251840034_Session.cs" />
-    <Compile Include="Migrations\201708251840034_Session.Designer.cs">
-      <DependentUpon>201708251840034_Session.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CartViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -256,8 +219,20 @@
     <Compile Include="Views\Controllers.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Images\adventure.png" />
+    <Content Include="Assets\Images\book.png" />
+    <Content Include="Assets\Images\cart.png" />
+    <Content Include="Assets\Images\fiction.png" />
+    <Content Include="Assets\Images\hip-hop.png" />
+    <Content Include="Assets\Images\jazz.png" />
+    <Content Include="Assets\Images\romance.png" />
+    <Content Include="Assets\Images\self-improvment.png" />
+    <Content Include="Assets\Images\sci-fi.png" />
+    <Content Include="Assets\Images\song.png" />
+    <Content Include="Assets\Images\soundtrack.png" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -322,6 +297,8 @@
     <Content Include="Views\Cart\Error.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
+    <Content Include="Views\Books\GetBooksNoCategory.cshtml" />
+    <Content Include="Views\Songs\GetSongsNoCategory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -339,35 +316,6 @@
       <Project>{6a846ca2-df79-4ebe-a0bd-ae2eed03aadd}</Project>
       <Name>onlineShop.core</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201707312320258_InitialCreate.resx">
-      <DependentUpon>201707312320258_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708020454384_Attribute.resx">
-      <DependentUpon>201708020454384_Attribute.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708240438436_cart.resx">
-      <DependentUpon>201708240438436_cart.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708240450288_cart1.resx">
-      <DependentUpon>201708240450288_cart1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708240458071_cart11.resx">
-      <DependentUpon>201708240458071_cart11.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708240459186_cart2.resx">
-      <DependentUpon>201708240459186_cart2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708240503340_cart3.resx">
-      <DependentUpon>201708240503340_cart3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708240512231_cart4.resx">
-      <DependentUpon>201708240512231_cart4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708251840034_Session.resx">
-      <DependentUpon>201708251840034_Session.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

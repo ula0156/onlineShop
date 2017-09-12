@@ -2,6 +2,7 @@
 @model onlineShopWeb.Models.CartViewModel
 
 @{
+    <link href="~/Content/style.css" rel="stylesheet" />
     ViewBag.Title = "DisplayCart";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -11,32 +12,64 @@
     @Model.Status
 }
 
-<table class="table-responsive">
-    @foreach (var item in Model.CartProducts)
+<table class="table personalizeTable" >
+    <tr>
+        <th>
+            @Html.Label("Products")
+        </th>
+        <th>
+            @Html.Label("Number of copies")
+        </th>
+        <th>
+            @Html.Label("")
+        </th>
+        <th>
+            @Html.Label("")
+        </th>
+        <th>
+            @Html.Label("Price")
+        </th>
+    </tr>
+    @foreach (var product in Model.CartProducts)
     {
-        if (item.Key is Book)
-        {
-            <tr>
-                <td>@Html.ActionLink(item.Key.Name, "Details", "Books", new { id = item.Key.Id }, null)</td> 
-                <td> @item.Value </td> 
-                <td>@Html.ActionLink("Add copy", "AddToCart", "Cart", new { id = item.Key.Id }, null)</td> 
-                <td>@Html.ActionLink("Remove copy", "RemoveFromCart", "Cart", new { id = item.Key.Id }, null)</td>
-                
+        var totalPrice = product.Value * product.Key.Price;
+        <tr>
+            @if (product.Key is Book)
+            {
+                <td>
+                    <img class="icon" src="~/Assets/Images/book.png" />
+                    @Html.ActionLink(product.Key.Name, "Details", "Books", new { id = product.Key.Id }, null)
+                </td>
+            }
+            else
+            {
+                <td>
+                    <img class="icon" src="~/Assets/Images/song.png" />
+                    @Html.ActionLink(product.Key.Name, "Details", "Songs", new { id = product.Key.Id }, null)
+                </td>
+            }
 
-            </tr>
-        }
-        else
-        {
-            <tr>
-                <td>@Html.ActionLink(item.Key.Name, "Details", "Songs", new { id = item.Key.Id }, null)</td>
-                <td> @item.Value </td>
-                <td>@Html.ActionLink("Add copy", "Details", "Songs", new { id = item.Key.Id }, null)</td>
-                <td>@Html.ActionLink("Remove copy", "RemoveFromCart", "Cart", new { id = item.Key.Id }, null)</td>
-
-            </tr>
-        }
+            <td>@Html.DisplayFor(Model => product.Value)</td>
+            <td>@Html.ActionLink("Add", "AddToCart", "Cart", new { id = product.Key.Id }, null)</td>
+            <td>@Html.ActionLink("Remove", "RemoveFromCart", "Cart", new { id = product.Key.Id }, null)</td>
+            <td>$@Html.DisplayFor(Model => totalPrice)</td>
+        </tr>
     }
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Total price: </td>
+        <td>$@Model.TotalPrice</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Total weight: </td>
+        <td>@Model.TotalWeight g</td>
+    </tr>
+    
 </table>
 
-Total weight: @Model.TotalWeight<br>
-Total price: @Model.TotalPrice<br>
+

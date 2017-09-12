@@ -1,0 +1,26 @@
+﻿input[type=text] {
+    width: 130px;
+    margin-top: 10px;
+    margin-left:20px;
+}
+
+.image {
+    width: 200px;
+    height: 200px;
+    margin-top: 10px;
+}
+
+.cart {
+    width: 35px;
+    height: 25px;
+    margin-left: 498px;
+}
+
+.icon {
+    width:30px;
+    height:30px;
+}
+
+.personalizeTable {
+    margin-top:10px;
+}

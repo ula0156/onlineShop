@@ -1,34 +1,73 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using onlineShop.Data.Database;
 using onlineShop.Products;
-using onlineShop.ProductPickers;
 using onlineShopWeb.DataAccess;
+using onlineShop.Entities;
+using onlineShop.ProductPickers;
 
 namespace onlineShopWeb.Controllers
 {
     public class SongsController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Index(string genre)
+        {
+            var songModel = GetCategorizedSongs(genre);
+            return View(songModel);
+        }
+
+        public ActionResult GetSongsNoCategory()
         {
             var songModel = GetSongs();
             return View(songModel);
         }
+
         private List<Song> GetSongs()
         {
-            RandomItemsProductPicker randomItemsPicker = new RandomItemsProductPicker();
-            var listOfSongs = randomItemsPicker.PickItems(
-                ReadersFactory.GetProductsReader(),
-                ReadersFactory.GetStocksReader(),
-                Filters.GetFilterByType(typeof(Song)), 4);
-            return listOfSongs.ConvertAll(x => (Song)x);
+            HolidayManager holidayManager = new HolidayManager();
+            List<string> toSearch;
+            RandomItemsProductPicker randomItemsProductPicker = new RandomItemsProductPicker();
+            List<Song> listOfSongs = new List<Song>();
+
+            if (holidayManager.IsHoliday(DateTime.Now, out toSearch))
+            {
+                // search items based on the keywords if it's a holiday
+                var listOfSearchedSongs = randomItemsProductPicker.PickItems(
+                    ReadersFactory.GetProductsReader(),
+                    ReadersFactory.GetStocksReader(),
+                    Filters.GetFilterByKeyWords(toSearch, typeof(Song)), 6);
+                listOfSongs = listOfSearchedSongs.ConvertAll(x => (Song)x);
+                return listOfSongs;
+            }
+            else
+            {
+                var listOfRandomBooks = randomItemsProductPicker.PickItems(
+                    ReadersFactory.GetProductsReader(),
+                    ReadersFactory.GetStocksReader(),
+                    Filters.GetFilterByType(typeof(Song)), 6);
+                listOfSongs = listOfRandomBooks.ConvertAll(x => (Song)x);
+            }
+
+            return listOfSongs;
         }
+
+        private List<Song> GetCategorizedSongs(string genre)
+        {
+            var productReader = ReadersFactory.GetProductsReader();
+            var listOfSongs = new List<Song>();
+            foreach (var item in productReader.GetProducts())
+            {
+                if (item is Song && ((Song)item).Genre == genre)
+                {
+                    listOfSongs.Add((Song)item);
+                }
+            }
+
+            return listOfSongs;
+        }
+
         public ActionResult Details(Guid id)
         {
             if (id == null)

@@ -13,9 +13,14 @@ namespace onlineShopWeb.Controllers
 {
     public class SearchController : Controller
     {
-        [HttpPost]
+        [HttpGet]
         public ActionResult Index(string searchText)
         {
+            if (searchText == null)
+            {
+                searchText = "";
+            }
+
             List<string> userSearchText = new List<string>();
             userSearchText.Add(searchText.ToLower());
 

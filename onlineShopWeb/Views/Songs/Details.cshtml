@@ -1,50 +1,51 @@
 ﻿@model onlineShop.Products.Song
 
 @{
+    <link href="~/Content/style.css" rel="stylesheet" />
+
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
-
-<div>
-    <h4>Song</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
+<table class="table personalizeTable">
+    <tr>
+        <th>
+            @Html.Label("Titel")
+        </th>
+        <th>
+            @Html.Label("Artist")
+        </th>
+        <th>
+            @Html.Label("Price")
+        </th>
+        <th>
+            @Html.Label("Genre")
+        </th>
+        <th>
+            @Html.Label("Duration")
+        </th>
+    </tr>
+    <tr>
+        <td>
+            <img class="icon" src="~/Assets/Images/song.png" />
             @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Duration)
-        </dt>
-
-        <dd>
+        </td>
+        <td>
+            @Html.ActionLink(Model.Artist, "Index", "Search", new { searchText = Model.Artist }, null)
+        </td>
+        <td>
+            $@Html.DisplayFor(model => model.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Genre)
+        </td>
+        <td>
             @Html.DisplayFor(model => model.Duration)
-        </dd>
+        </td>
+    </tr>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Artist)
-        </dt>
+</table>
 
-        <dd>
-            @Html.DisplayFor(model => model.Artist)
-        </dd>
-
-    </dl>
-</div>
 <p>
     @Html.ActionLink("Add to cart", "AddToCart", "Cart", new { id = Model.Id }, null) |
     @Html.ActionLink("Back to List", "Index")
