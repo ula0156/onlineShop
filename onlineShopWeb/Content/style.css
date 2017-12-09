@@ -1,7 +1,7 @@
-﻿input[type=text] {
+﻿#searchText {
     width: 130px;
     margin-top: 10px;
-    margin-left:20px;
+    margin-left: 20px;
 }
 
 .image {
@@ -13,7 +13,7 @@
 .cart {
     width: 35px;
     height: 25px;
-    margin-left: 498px;
+    margin-left: 40px;
 }
 
 .icon {

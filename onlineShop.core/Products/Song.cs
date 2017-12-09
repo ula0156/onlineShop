@@ -12,7 +12,7 @@
         {
         }
 
-        public Song(string name, double price, string tags, double duration, string artist, string genre) : base(name, price, tags)
+        public Song(string name, double price, string tags, string imagePath, double duration, string artist, string genre) : base(name, price, tags, imagePath)
         {
             Duration = duration;
             Artist = artist;

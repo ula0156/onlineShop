@@ -12,7 +12,7 @@ namespace onlineShop.Products
         {
         }
 
-        public PhysicalProduct(string name, double price, string tags, string color, Size size) : base(name, price, tags)
+        public PhysicalProduct(string name, double price, string tags, string imagePath, string color, Size size) : base(name, price, tags, imagePath)
         {
             Color = color;
             Size = size;

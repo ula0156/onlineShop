@@ -56,11 +56,14 @@ namespace onlineShopWeb.Controllers
 
             ProvidersFactory.GetSessionsProvider().UpdateOrAddSession(identifier, isLoggedIn);
             var cart = cartManager.GetCartBySessionId(identifier);
-            var cartToDisplay = cartManager.GetProductsCount(cart);
+            int count = 0;
+            var cartToDisplay = cartManager.GetProductsCount(cart, out count);
             CartViewModel model = new CartViewModel();
             model.CartProducts = cartToDisplay;
             model.TotalPrice = cartManager.GetTotalPrice(cartToDisplay);
             model.TotalWeight = cartManager.GetTotalWeight(cartToDisplay);
+            HttpContext.Session["Total"] = model.TotalPrice;
+            HttpContext.Session["Count"] = count; ;
             model.Status = status;
 
             return View(model);
@@ -87,7 +90,28 @@ namespace onlineShopWeb.Controllers
 
             return RedirectToAction("DisplayCart");
         }
-        
+
+        /**
+        * This method will remove only one copy of a specified product
+        */
+        public RedirectToRouteResult RemoveOneCopy(Guid id)
+        {
+            if (id == null)
+            {
+                throw new HttpException(400, "Bad Request");
+            }
+
+            bool isLoggedIn;
+            var identifier = UserIdentifier.GetIdentifier(HttpContext, out isLoggedIn);
+
+            ProvidersFactory.GetSessionsProvider().UpdateOrAddSession(identifier, isLoggedIn);
+
+            var product = ReadersFactory.GetProductsReader().GetProducts().First(guid => guid.Id == id);
+            cartManager.RemoveOneCopy(product, identifier);
+
+            return RedirectToAction("DisplayCart");
+        }
+
         public ActionResult Error()
         {
             return Content("Product is out of stock");

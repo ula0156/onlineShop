@@ -1,52 +1,65 @@
 ﻿@model onlineShop.Products.Song
-
 @{
-    <link href="~/Content/style.css" rel="stylesheet" />
-
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<table class="table personalizeTable">
-    <tr>
-        <th>
-            @Html.Label("Titel")
-        </th>
-        <th>
-            @Html.Label("Artist")
-        </th>
-        <th>
-            @Html.Label("Price")
-        </th>
-        <th>
-            @Html.Label("Genre")
-        </th>
-        <th>
-            @Html.Label("Duration")
-        </th>
-    </tr>
-    <tr>
-        <td>
-            <img class="icon" src="~/Assets/Images/song.png" />
-            @Html.DisplayFor(model => model.Name)
-        </td>
-        <td>
-            @Html.ActionLink(Model.Artist, "Index", "Search", new { searchText = Model.Artist }, null)
-        </td>
-        <td>
-            $@Html.DisplayFor(model => model.Price)
-        </td>
-        <td>
-            @Html.DisplayFor(model => model.Genre)
-        </td>
-        <td>
-            @Html.DisplayFor(model => model.Duration)
-        </td>
-    </tr>
+<div>
+    <ul class="breadcrumb">
+        <li><a href='@Url.Action("Index", "Home")'> Home </a> <span class="divider">/</span></li>
+        <li><a href='@Url.Action("Index", "Songs", new { genre = Model.Genre})'>Genre</a> <span class="divider">/</span></li>
+        <li class="active">Preview</li>
+    </ul>
+    <div class="well well-small">
+        <div class="row-fluid">
+            <div class="span3">
+                <div id="myCarousel" class="carousel slide cntr">
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <img src="/@Html.DisplayFor(model => model.ImagePath)" alt="" style="width:100%">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="span7">
 
-</table>
-
-<p>
-    @Html.ActionLink("Add to cart", "AddToCart", "Cart", new { id = Model.Id }, null) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+                <table class="table table-striped" summary="Bibliographic Details">
+                    <tr>
+                        <th>Main Author: </th>
+                        <td property="author">@Html.DisplayFor(model => model.Artist)</td>
+                    </tr>
+                    <tr>
+                        <th>Format: </th>
+                        <td>
+                            <span class="iconlabel book">Audio</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Duration: </th>
+                        <td>
+                            @Html.DisplayFor(model => model.Duration) minutes
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Genre: </th>
+                        <td>
+                            @Html.DisplayFor(model => model.Genre)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Price: </th>
+                        <td>
+                            <strong>$@Html.DisplayFor(model => model.Price)</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <a class="shopBtn" href='@Url.Action("AddToCart", "Cart", new { Id = Model.Id})' /><span style="font-weight:bold" class="icon-shopping-cart"> Add to cart</span>
+                        </th>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

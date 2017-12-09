@@ -2,74 +2,97 @@
 @model onlineShopWeb.Models.CartViewModel
 
 @{
-    <link href="~/Content/style.css" rel="stylesheet" />
     ViewBag.Title = "DisplayCart";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    <link href="@Url.Content("~/Assets/StyleSheet1.css")" rel="stylesheet" />
 }
 
 @if (Model.Status != null)
 {
     @Model.Status
 }
+<div class="row">
+    <div class="span12">
+        <ul class="breadcrumb">
+            <li><a href="@Url.Action("Index", "Home")">Home</a> <span class="divider">/</span></li>
+            <li class="active">Cart</li>
+        </ul>
+        <div class="well well-small">
+            <h1>Cart<small class="pull-right"> @Model.CartProducts.Count Items are in the cart </small></h1>
+            <hr class="soften" />
+            <table class="table table-bordered table-condensed">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Description</th>
+                        <td>Avail.</td>
+                        <th>Unit price</th>
+                        <th>Qty </th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var product in Model.CartProducts)
+                    {
+                        string type = "Book";
+                        double price = product.Value * product.Key.Price;
+                        <tr>
+                            <td>
+                                @if (product.Key is Book)
+                                {
+                                    <a href='@Url.Action("Details", "Books", new { id = product.Key.Id }, null)'>
+                                        <img width="120" src="/@product.Key.ImagePath" alt="product image" />
+                                    </a>
+                                }
+                                else
+                                {
+                                    type = "Song";
+                                    <a href='@Url.Action("Details", "Songs", new { id = product.Key.Id }, null)'>
+                                        <img width="120" src="/@product.Key.ImagePath" alt="product image" />
+                                    </a>
+                                }
 
-<table class="table personalizeTable" >
-    <tr>
-        <th>
-            @Html.Label("Products")
-        </th>
-        <th>
-            @Html.Label("Number of copies")
-        </th>
-        <th>
-            @Html.Label("")
-        </th>
-        <th>
-            @Html.Label("")
-        </th>
-        <th>
-            @Html.Label("Price")
-        </th>
-    </tr>
-    @foreach (var product in Model.CartProducts)
-    {
-        var totalPrice = product.Value * product.Key.Price;
-        <tr>
-            @if (product.Key is Book)
-            {
-                <td>
-                    <img class="icon" src="~/Assets/Images/book.png" />
-                    @Html.ActionLink(product.Key.Name, "Details", "Books", new { id = product.Key.Id }, null)
-                </td>
-            }
-            else
-            {
-                <td>
-                    <img class="icon" src="~/Assets/Images/song.png" />
-                    @Html.ActionLink(product.Key.Name, "Details", "Songs", new { id = product.Key.Id }, null)
-                </td>
-            }
+                            </td>
+                            <td>
+                                <br>
+                                @type: <br></br>
+                                <span class="type"> @Html.DisplayFor(modelItem => product.Key.Name)</span>
+                            </td>
+                            <td><span class="shopBtn"><span class="icon-ok"></span></span> </td>
+                            <td>$@Html.DisplayFor(modelItem => product.Key.Price)</td>
+                            <td>
+                                <input class="span1" style="max-width:34px" placeholder="1" id="appendedInputButtons" size="16" type="text" value="@Html.DisplayFor(modelItem => product.Value)" readonly>
+                                <div class="input-append">
+                                    <button class="btn btn-mini" type="button" onclick="location.href='@Url.Action("RemoveOneCopy", "Cart", new { id = product.Key.Id }, null)'"> - </button>
+                                    <button class="btn btn-mini" type="button" onclick="location.href='@Url.Action("AddToCart", "Cart", new { id = product.Key.Id }, null)'"> + </button>
+                                    <button class="btn btn-mini btn-danger" type="button" onclick="location.href='@Url.Action("RemoveFromCart", "Cart", new { id = product.Key.Id }, null)'">
+                                        <span class="icon-remove"></span>
+                                    </button>
+                                </div>
+                            </td>
+                            <td>$@price</td>
+                        </tr>
+                    }
+                    <tr>
+                        <td colspan="5" class="alignR">Total price:	</td>
+                        <td>$@Html.DisplayFor(model => model.TotalPrice)</td>
+                    </tr>
+                    <tr>
+                        <td colspan="5" class="alignR">Total weight:	</td>
+                        <td>@Html.DisplayFor(model => model.TotalWeight)<span> lb</span></td>
+                    </tr>
+                </tbody>
+            </table><br />
+            <a href="javascript: history.go(-1)" class="shopBtn btn-large"><span class="icon-arrow-left"></span> Continue Shopping</a>
+            <a class="shopBtn btn-large pull-right">Next <span class="icon-arrow-right"></span></a>
 
-            <td>@Html.DisplayFor(Model => product.Value)</td>
-            <td>@Html.ActionLink("Add", "AddToCart", "Cart", new { id = product.Key.Id }, null)</td>
-            <td>@Html.ActionLink("Remove", "RemoveFromCart", "Cart", new { id = product.Key.Id }, null)</td>
-            <td>$@Html.DisplayFor(Model => totalPrice)</td>
-        </tr>
-    }
-    <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>Total price: </td>
-        <td>$@Model.TotalPrice</td>
-    </tr>
-    <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>Total weight: </td>
-        <td>@Model.TotalWeight g</td>
-    </tr>
-    
-</table>
+        </div>
+    </div>
+</div>
 
-
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/jquery.easing-1.3.min.js"></script>
+<script src="assets/js/jquery.scrollTo-1.4.3.1-min.js"></script>
+<script src="assets/js/shop.js"></script>

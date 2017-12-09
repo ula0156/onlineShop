@@ -17,16 +17,19 @@ namespace onlineShop.Products
 
         public string Tags { get; set; }
 
+        public string ImagePath { get; set; }
+
         protected Product()
         {
         }
 
-        public Product(string name, double price, string tags)
+        public Product(string name, double price, string tags, string imagePath)
         {
             Id = Guid.NewGuid(); // static method. Called it on the class
             Name = name;
             Price = price;
             Tags = tags.ToLower();
+            ImagePath = imagePath;
         }
 
         public virtual bool DoesKeyWordMatches(string keyword)

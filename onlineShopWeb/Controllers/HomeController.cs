@@ -13,16 +13,16 @@ namespace onlineShopWeb.Controllers
 {
     public class HomeController : Controller
     {
-        private static bool shouldInitializeDatabase = false;
+        private static bool shouldTryInitializeDatabase = false;
 
         private void InitializeDatabaseIfNeeded()
         {
-            if (shouldInitializeDatabase)
+            if (shouldTryInitializeDatabase)
             {
-                shouldInitializeDatabase = false;
+                shouldTryInitializeDatabase = false;
                 var initializer = new DatabaseInitializer();
                 var pm = new ProductsManager(ProvidersFactory.GetProductsProvider(), ProvidersFactory.GetStocksProvider());
-                initializer.InitializeDatabase(pm);
+                initializer.InitializeDatabase(ProvidersFactory.GetProductsProvider(), pm);
             }
         }
 
