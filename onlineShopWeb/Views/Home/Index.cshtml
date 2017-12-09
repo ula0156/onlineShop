@@ -1,91 +1,94 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Eclipse</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-    <link href="~/Content/style.css" rel="stylesheet" />
-    @model onlineShopWeb.Models.HomeViewModel
+﻿@model onlineShopWeb.Models.HomeViewModel
 
-    @{
-        ViewBag.Title = "Index";
-        Layout = "~/Views/Shared/_Layout.cshtml";
-    }
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
-</head>
-<body>
-    <div class="container text-center">
-        <div class="row">
-            <div class="col-md-12">
-                <h3 class="text-muted">Books Genres</h3>
+<h3>Books Genres</h3>
+<ul class="thumbnails">
+        <li class="span3">
+            <div class="thumbnail">
+                <a href='@Url.Action("Index", "Books", new { genre = "fantasy"})' class="overlay"></a>
+                <a href='@Url.Action("Index", "Books", new { genre = "fantasy"})'><img src="~/Assets/Images/fantasy.jpg" alt=""></a>
+                <div class="caption cntr">
+                    <p>Fantasy</p>
+                    <br class="clr">
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3" id="project1">
-                <a href='@Url.Action("Index", "Books", new { genre = "adventure"})'>
-                    <img src='@Url.Content("~/Assets/Images/adventure.png")' class="img-responsive img-thumbnail image center-block" alt="book image"/>
-                </a>
-                <p>Adventure</p>
+        </li>
+        <li class="span3">
+            <div class="thumbnail">
+                <a href='@Url.Action("Index", "Books", new { genre = "fiction"})' class="overlay"></a>
+                <a href='@Url.Action("Index", "Books", new { genre = "fiction"})'><img src="~/Assets/Images/fiction.jpg" alt=""></a>
+                <div class="caption cntr">
+                    <p>Fiction</p>
+                    <br class="clr">
+                </div>
             </div>
-            <div class="col-md-3">
-                <a href='@Url.Action("Index", "Books", new { genre = "fiction"})'>
-                    <img src='@Url.Content("~/Assets/Images/fiction.png")' class="img-responsive img-thumbnail image center-block" alt="book image" />
-                </a>                
-                <p>Fiction</p>
+        </li>
+        <li class="span3">
+            <div class="thumbnail item">
+                <a href='@Url.Action("Index", "Books", new { genre = "romance"})' class="overlay"></a>
+                <a href='@Url.Action("Index", "Books", new { genre = "romance"})'><img src="~/Assets/Images/romance1.jpg" alt=""></a>
+                <div class="caption cntr">
+                    <p>Romance</p>
+                    <br class="clr">
+                </div>
             </div>
-            <div class="col-md-3">
-                <a href='@Url.Action("Index", "Books", new { genre = "sci-fi"})'>
-                    <img src='@Url.Content("~/Assets/Images/sci-fi.png")' class="img-responsive img-thumbnail image center-block" alt="book image" />
-                </a>                
-                <p>Sci-Fi</p>
+        </li>
+        <li class="span3">
+            <div class="thumbnail">
+                <a href='@Url.Action("Index", "Books", new { genre = "self-improvment"})' class="overlay"></a>
+                <a href='@Url.Action("Index", "Books", new { genre = "self-improvment"})'><img src="~/Assets/Images/self-improvment.jpg" alt=""></a>
+                <div class="caption cntr">
+                    <p>Self-improvment</p>
+                    <br class="clr">
+                </div>
             </div>
-            <div class="col-md-3">
-                <a href='@Url.Action("Index", "Books", new { genre = "romance"})'>
-                    <img src='@Url.Content("~/Assets/Images/romance.png")' class="img-responsive img-thumbnail image center-block" alt="book image" />
-                </a>                
-                <p>Romance</p>
+        </li>
+    </ul>
+    <h3>Music Genres</h3>
+    <ul class="thumbnails">
+        <li class="span3">
+            <div class="thumbnail">
+                <a href='@Url.Action("Index", "Songs", new { genre = "electronic"})' class="overlay"></a>
+                <a href='@Url.Action("Index", "Songs", new { genre = "electronic"})'><img src="~/Assets/Images/electronic.jpg" alt=""></a>
+                <div class="caption cntr">
+                    <p>Electronic</p>
+                    <br class="clr">
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <hr>
+        </li>
+        <li class="span3">
+            <div class="thumbnail item">
+                <a href='@Url.Action("Index", "Songs", new { genre = "jazz"})' class="overlay"></a>
+                <a href='@Url.Action("Index", "Songs", new { genre = "jazz"})'><img src="~/Assets/Images/jazz.jpg" height="210" alt=""></a>
+                <div class="caption cntr">
+                    <p>Jazz</p>
+                    <br class="clr">
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <h3 class="text-muted">Music Genres</h3>
+        </li>
+        <li class="span3">
+            <div class="thumbnail">
+                <a href='@Url.Action("Index", "Songs", new { genre = "soundtrack"})' class="overlay"></a>
+                <a href='@Url.Action("Index", "Songs", new { genre = "soundtrack"})'><img src="~/Assets/Images/soundtrack.jpg" alt=""></a>
+                <div class="caption cntr">
+                    <p>Soundtrack</p>
+                    <br class="clr">
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3">
-                <a href='@Url.Action("Index", "Songs", new {genre = "electronic"})'>
-                    <img src='@Url.Content("~/Assets/Images/electronic.png")' class="img-responsive img-thumbnail image center-block" alt="album image" />
-                </a>                
-                <p>Electronic</p>
+        </li>
+        <li class="span3">
+            <div class="thumbnail">
+                <a href='@Url.Action("Index", "Songs", new { genre = "clasical"})' class="overlay"></a>
+                <a href='@Url.Action("Index", "Songs", new { genre = "classical"})'><img src="~/Assets/Images/classical.jpg" alt=""></a>
+                <div class="caption cntr">
+                    <p>Classical music</p>
+                    <br class="clr">
+                </div>
             </div>
-            <div class="col-md-3">
-                <a href='@Url.Action("Index", "Songs", new {genre = "jazz"})'>
-                    <img src='@Url.Content("~/Assets/Images/jazz.png")' class="img-responsive img-thumbnail image center-block" alt="album image" />
-                </a>                  
-                <p>Jazz</p>
-            </div>
-            <div class="col-md-3">
-                <a href='@Url.Action("Index", "Songs", new { genre = "soundtrack" })'>
-                    <img src='@Url.Content("~/Assets/Images/soundtrack.png")' class="img-responsive img-thumbnail image center-block" alt="album image" />
-                </a>                  
-                <p>Soundtrack</p>
-            </div>
-            <div class="col-md-3">
-                <a href='@Url.Action("Index", "Songs", new {genre = "hip-hop"})'>
-                    <img src='@Url.Content("~/Assets/Images/hip-hop.png")' class="img-responsive img-thumbnail image center-block" alt="album image" />
-                </a>                  
-                <p>Hip-Hop</p>
-            </div>
-        </div>
-    </div>
-</body>
-</html>
-
+        </li>
+    </ul>
 

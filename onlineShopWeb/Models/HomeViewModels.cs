@@ -1,5 +1,4 @@
 ﻿using onlineShop.Products;
-using System.Collections.Generic;
 
 
 namespace onlineShopWeb.Models

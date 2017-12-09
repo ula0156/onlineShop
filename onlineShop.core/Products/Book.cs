@@ -15,7 +15,7 @@ namespace onlineShop.Products
         {
         }
         
-        public Book(string name, double price, string tags, string color, Size size, int numberOfPages, string author, string genre) : base(name, price, tags, color, size)
+        public Book(string name, double price, string tags, string imagePath, string color, Size size, int numberOfPages, string author, string genre) : base(name, price, tags, imagePath, color, size)
         {
             NumberOfPages = numberOfPages;
             Author = author;

@@ -68,11 +68,21 @@ namespace onlineShop.core.Managers
             }
 
             var cart = _cartsProvider.GetCartForSession(sessionId);
+            cart.Products.RemoveAll(item => item == product.Id); 
+            _cartsProvider.SaveCart(cart);
+        }
+
+
+        public void RemoveOneCopy(Product product, string sessionId)
+        {
+            var reservationToRemove = _reservationsProvider.GetReservations().FirstOrDefault(sId => sId.SessionId == sessionId);
+           _reservationsManager.CancelReservation(reservationToRemove.Id);
+            var cart = _cartsProvider.GetCartForSession(sessionId);
             cart.Products.Remove(product.Id);
             _cartsProvider.SaveCart(cart);
         }
 
-        
+
         /**
          * Get all reservations for this sessionId existing in reservationDB
          * go over them and try to renew (through the reservationManager)
@@ -113,10 +123,10 @@ namespace onlineShop.core.Managers
             _cartsProvider.SaveCart(cart);
         }
 
-        public Dictionary<Product, int> GetProductsCount(Cart cart)
+        public Dictionary<Product, int> GetProductsCount(Cart cart, out int count)
         {
             Dictionary<Product, int> cartToDisplay = new Dictionary<Product, int>();
-
+            var numberOfItems = 0;
             foreach (var item in cart.Products)
             {
                 var product = _productsProvider.GetProducts().First(id => id.Id == item);
@@ -128,8 +138,9 @@ namespace onlineShop.core.Managers
                 {
                     cartToDisplay[product]++;
                 }
+                numberOfItems++;
             }
-
+            count = numberOfItems;
             return cartToDisplay;
         }
 

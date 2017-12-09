@@ -2,54 +2,40 @@
 @model onlineShopWeb.Models.SearchViewModel
 
 @{
-    <link href="~/Content/style.css" rel="stylesheet" />
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<table class="table personalizeTable">
-    <tr>
-        <th>
-            @Html.Label("Product Type")
-        </th>
-        <th>
-            @Html.Label("Title")
-        </th>
-        <th>
-            @Html.Label("Price")
-        </th>
-    </tr>
-    
-    @foreach (var item in Model.ListOfProducts)
+<ul class="thumbnails">
+    @for (int i = 0; i < 20; i++)
     {
-        <tr>
-            <td>
-                @if(item is Book) 
+        <li class="span3">
+            <div class="row-fluid">
+                @foreach (var product in Model.ListOfProducts.Skip(i).Take(1))
                 {
-                    <img class="icon" src="~/Assets/Images/book.png"/>
-                    @Html.Label("Book")
-                }
-                else
-                {
-                    <img class="icon" src="~/Assets/Images/song.png"/>
-                    @Html.Label("Song")
-                }
+                    <div class="thumbnail">
+                        @if(product is Book)
+                        {
+                            <a href='@Url.Action("Details", "Books", new { id = product.Id }, null)'>
+                            <img src="/@product.ImagePath" alt="product image" /><br />
+                        </a>
+                        } else
+                        {
+                            <a href='@Url.Action("Details", "Songs", new { id = product.Id }, null)'>
+                            <img src="/@product.ImagePath" alt="product image" /><br />
+                        </a>
+                        }
 
-            </td>
-            <td>
-                @if (item is Book)
-                {
-                    @Html.ActionLink(item.Name, "Details", "Books", new { id = item.Id }, null)
+
+                        <div class="caption cntr">
+                            <p>@Html.DisplayFor(modelItem => product.Name)</p>
+                            <p><strong>$@Html.DisplayFor(modelItem => product.Price)</strong></p>
+                            <h4><a class="shopBtn" href='@Url.Action("AddToCart", "Cart", new { Id = product.Id })'> Add to cart</a></h4>
+                            <br class="clr">
+                        </div>
+                    </div>
                 }
-                else
-                {
-                    @Html.ActionLink(item.Name, "Details", "Songs", new { id = item.Id }, null)
-                }
-            </td>
-            <td>
-                $@Html.DisplayFor(modelItem => item.Price)
-            </td>
-        </tr>
+            </div>
+        </li>
     }
-</table>
-
+</ul>

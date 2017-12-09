@@ -37,7 +37,7 @@ namespace onlineShopWeb.Controllers
                 var listOfSearchedBooks = randomItemsProductPicker.PickItems(
                     ReadersFactory.GetProductsReader(),
                     ReadersFactory.GetStocksReader(),
-                    Filters.GetFilterByKeyWords(toSearch, typeof(Book)), 5);
+                    Filters.GetFilterByKeyWords(toSearch, typeof(Book)), 20);
                 listOfBooks = listOfSearchedBooks.ConvertAll(x => (Book)x);
                 return listOfBooks;
             }
@@ -46,7 +46,7 @@ namespace onlineShopWeb.Controllers
                 var listOfRandomBooks = randomItemsProductPicker.PickItems(
                     ReadersFactory.GetProductsReader(),
                     ReadersFactory.GetStocksReader(),
-                    Filters.GetFilterByType(typeof(Book)), 5);
+                    Filters.GetFilterByType(typeof(Book)), 20);
                 listOfBooks = listOfRandomBooks.ConvertAll(x => (Book)x);
             }
             return listOfBooks;

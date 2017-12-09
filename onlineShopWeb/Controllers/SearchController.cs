@@ -18,7 +18,8 @@ namespace onlineShopWeb.Controllers
         {
             if (searchText == null)
             {
-                searchText = "";
+                return RedirectToAction("Home","Index");
+                //searchText = "";
             }
 
             List<string> userSearchText = new List<string>();

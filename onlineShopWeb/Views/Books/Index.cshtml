@@ -1,40 +1,35 @@
 ﻿@model IEnumerable<onlineShop.Products.Book>
 
 @{
-    <link href="~/Content/style.css" rel="stylesheet" />
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
-} 
-<table class="table personalizeTable">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Author)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var book in Model) {
-    <tr>
-        <td>
-            <img class="icon" src="~/Assets/Images/book.png" />
-            @Html.ActionLink(book.Name, "Details", new { id = book.Id }, null)
-        </td>
-        <td>
-            $@Html.DisplayFor(modelItem => book.Price)
-        </td>
-        <td>    
-            @Html.ActionLink(book.Author, "Index", "Search", new { searchText = book.Author }, null)
-        </td>
-        <td>
-            @Html.ActionLink("Add to cart", "AddToCart", "Cart", new { id = book.Id }, null)
-        </td>
-    </tr>
 }
 
-</table>
+<h3>Genre: </h3>
+<ul class="thumbnails">
+    @for (int i = 0; i < 20; i++)
+    {
+    <li class="span3">
+        <div class="row-fluid">
+            @foreach (var product in Model.Skip(i).Take(1))
+            {
+                    <div class="thumbnail">
+                        <a href='@Url.Action("Details", "Books", new { id = product.Id }, null)'>
+                            <img src="/@product.ImagePath" alt="product image" /><br />
+                        </a>
+
+                        <div class="caption cntr">
+                            <p>@Html.DisplayFor(modelItem => product.Name)</p>
+                            <p>@Html.DisplayFor(modelItem => product.Author)</p>
+                            <p><strong>$@Html.DisplayFor(modelItem => product.Price)</strong></p>
+                            <h4><a class="shopBtn" href='@Url.Action("AddToCart", "Cart", new { Id = product.Id })'> Add to cart</a></h4>
+                            <br class="clr">
+                        </div>
+                    </div>
+            }
+        </div>
+    </li>
+    }
+</ul>
+
+
