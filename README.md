@@ -72,7 +72,7 @@ Checkout is not currently implemented.
 **Future improvements**:
 
 * Add checkout page
-* Personalize content based on user purchase history as well as trends (currently we only update the content based on special occasions)
+* Personalize content based on user purchase history as well as trends (currently i only update the content based on special occasions)
 * Improve UI design
 * Add admin page to manage products/promotions/stocks
 
